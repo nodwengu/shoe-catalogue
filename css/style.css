@@ -1,0 +1,42 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+	font-size: inherit;
+}
+
+
+i.left {
+  margin-right: 4px;
+}
+
+span {
+  margin: 0 15% 0 0;
+}
+
+select {
+  margin: 25px 0px 9px 0;
+}
+
+.card.horizontal {
+  padding: 3%;
+}
+
+/* .search {
+  position: relative;
+  left: 63%;
+} */
+
+.option-group {
+  display: flex;
+  align-items: baseline;
+  font-weight: bold;
+}
