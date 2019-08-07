@@ -40,3 +40,8 @@ select {
   align-items: baseline;
   font-weight: bold;
 }
+
+nav {
+  position: fixed;
+  z-index: 999;
+}
