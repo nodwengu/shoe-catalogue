@@ -6,9 +6,12 @@
   <title>Shoe catalogue</title>
 
   <!-- CSS  -->
+
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
 </head>
 <body>
    <nav class="#ef5350 red lighten-1" role="navigation">
@@ -28,6 +31,48 @@
     </div>
    </nav>
 
+   <header>
+      <script type="text/x-handlebars-template" class="shoesTemplate">
+         <div class="option-group ">
+            <span class="">Color</span>
+            <select class="browser-default">
+               <option value="" disabled selected>Choose your option</option>
+               {{#each arrTest}}
+                  <option>Red</option>
+               {{/each}}
+               
+               <!-- <option value="blue" class="colorOption">Blue</option>
+               <option value="orange" class="colorOption">Orange</option>
+               <option value="black" class="colorOption">Black</option>
+               <option value="white" class="colorOption">White</option> -->
+            </select>
+         </div>
+         <div class="option-group ">
+            <span>Size&nbsp;&nbsp;&nbsp;</span>
+            <select class="browser-default">
+               <option value="" disabled selected>Choose your option</option>
+               <option value="5">5</option>
+               <option value="6">6</option>
+               <option value="7">7</option>
+               <option value="8">8</option>
+               <option value="9">9</option>
+            </select>
+         </div>
+         <div class="option-group ">
+            <span>Brand</span>
+            <select class="browser-default">
+               <option value="" disabled selected>Choose your option</option>
+               <option value="nike">Nike</option>
+               <option value="adidas">Adidas</option>
+               <option value="reebok">Reebok</option>
+               <option value="fila">Fila</option>
+               <option value="timberland">Timberland</option>
+            </select>
+         </div>
+   
+      </script>
+   </header>
+
    <div class="container">
       <div class="section" style="padding-top: 6rem;">
          <h4 class="header">Shoe catalogue</h4>
@@ -39,41 +84,32 @@
                   <a class="waves-effect #ef5350 red lighten-1 btn"><i class="material-icons left">add_shopping_cart</i>ADD TO CART</a>
                </div>
                <div class="col s6 m6">
-                  <a class="waves-effect #ef5350 red lighten-1 btn search"><i class="material-icons left">search</i>SEARCH</a>
+                  <a class="waves-effect #ef5350 red lighten-1 btn search" id="searchBtn"><i class="material-icons left">search</i>SEARCH</a>
+                  
                   <div class="option-group ">
                      <span class="">Color</span>
-                     <select class="browser-default">
+                     <select class="browser-default colorOptions">
                         <option value="" disabled selected>Choose your option</option>
-                        <option value="red">Red</option>
-                        <option value="blue">Blue</option>
-                        <option value="orange">Orange</option>
-                        <option value="black">Black</option>
-                        <option value="white">White</option>
+                        <!-- <option value="red">Red</option> -->
                      </select>
                   </div>
+                    
                   <div class="option-group ">
                      <span>Size&nbsp;&nbsp;&nbsp;</span>
-                     <select class="browser-default">
+                     <select class="browser-default sizeOptions">
                         <option value="" disabled selected>Choose your option</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
+                        <!-- <option value="5">5</option> -->
                      </select>
                   </div>
                   <div class="option-group ">
                      <span>Brand</span>
-                     <select class="browser-default">
+                     <select class="browser-default brandOptions">
                         <option value="" disabled selected>Choose your option</option>
-                        <option value="nike">Nike</option>
-                        <option value="adidas">Adidas</option>
-                        <option value="reebok">Reebok</option>
-                        <option value="fila">Fila</option>
-                        <option value="timberland">Timberland</option>
+                        <!-- <option value="nike">Nike</option> -->
                      </select>
                   </div>
-               </div>
+              
+            </div>
             </div>
          </div>
       </div>  

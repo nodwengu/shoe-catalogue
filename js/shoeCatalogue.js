@@ -52,6 +52,18 @@ function createShoeCatalogue() {
       return in_stock;
    }
 
+   function getColorsAdded() {
+      return colorsAdded;
+   }
+
+   function getSizesAdded() {
+      return sizesAdded;
+   }
+
+   function getBrandsAdded() {
+      return brandsAdded;
+   }
+
    function getCatalogueObj() {
       return obj;
    }
@@ -152,6 +164,9 @@ function createShoeCatalogue() {
       getPrice,
       getQuantity,
       getCatalogueObj,
+      getColorsAdded,
+      getSizesAdded,
+      getBrandsAdded,
       checkColor,
       incrementQuantity,
       decrementQuantity,
@@ -162,7 +177,7 @@ function createShoeCatalogue() {
 }
 
 
-// let shoeCatalogueInstance = createShoeCatalogue();
+//let shoeCatalogueInstance = createShoeCatalogue();
 // shoeCatalogueInstance.setColor('red');
 // shoeCatalogueInstance.setSize(8);
 // shoeCatalogueInstance.setBrand('Thando');
@@ -175,14 +190,21 @@ function createShoeCatalogue() {
 
 
 
-// //shoeCatalogueInstance.setColor('green');
+//shoeCatalogueInstance.setColor('green');
 // shoeCatalogueInstance.setColor('yellow');
 
 //  let arr = [
 //    {color: 'blue', size: '45', brand: 'me', price: 170, in_stock: 5},
-//    {color: 'red', size: '45', brand: 'me', price: 170, in_stock: 5}
+//    {color: 'yellow', size: '12', brand: 'mike', price: 300, in_stock: 2},
+//    {color: 'red', size: '45', brand: 'me', price: 170, in_stock: 5},
+//    {color: 'pink', size: '45', brand: 'me', price: 170, in_stock: 5}
 // ]
-// alert( shoeCatalogueInstance.checkColor(arr) );
+
+// shoeCatalogueInstance.checkColor(arr);
+// let array = [];
+// let colors = shoeCatalogueInstance.getColorsAdded()
+// array.push(colors)
+// console.log(array)
 
 
 
