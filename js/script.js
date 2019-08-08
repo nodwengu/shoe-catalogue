@@ -7,9 +7,26 @@ let searchBtn = document.querySelector('#searchBtn');
 
 let shoeCatalogueInstance = createShoeCatalogue();
 
-let shoesList = [];
+
+
+
+// if(localStorage.getItem('shoesCatalogue')) {
+//    let shoesListData = JSON.parse(localStorage.getItem('shoesCatalogue'));
+//    for(let i = 0; i < shoesListData.length; i++) {
+//       let elem = shoesListData[i];
+//       console.log(elem);
+//       for(let key in elem) {
+//          alert(key);
+//       }
+//    }
+//    console.log(shoesListData);
+// } 
+
+//let shoesList = shoeCatalogueInstance.getShoesList();
+
 function storeShoe() {
-   let shoesList = [];
+   //let shoesList = [];
+   let shoesList = shoeCatalogueInstance.getShoesList();
     
    //Get user input values
    let colorVal = document.querySelector('#color').value;
@@ -38,11 +55,11 @@ function storeShoe() {
          if(elem.color === color && elem.size === size && elem.brand === brand) {
                //update the current element quantity
                elem.in_stock++;
-               //console.log(elem);
+               console.log(elem);
          }
       }
    } 
-   // else {
+   else {
       //alert("no repeat");
       shoesList.push(shoeCatalogueInstance.getCatalogueObj())
 
@@ -60,26 +77,28 @@ function storeShoe() {
      
       if(!isColorRepeated) {
          for(let key in colors) {
-            colorsOptionElem.innerHTML += "<option>" + key + "</option>";
+            colorsOptionElem.innerHTML += "<option class='colorOption' value='color'>" + key.toLowerCase() + "</option>";
          }
          localStorage.setItem('shoeColors', JSON.stringify(colors))
       }
 
       if(!isSizeRepeated) {
          for(let key in sizes) {
-            sizesOptionElem.innerHTML += "<option>" + key + "</option>";
+            sizesOptionElem.innerHTML += "<option class='sizeOption' value='size'>" + key + "</option>";
          }
          localStorage.setItem('shoeSizes', JSON.stringify(sizes))
       }
 
       if(!isBrandRepeated) {
          for(let key in brands) {
-            brandsOptionElem.innerHTML += "<option>" + key + "</option>";
+            brandsOptionElem.innerHTML += "<option class='brandOption' value='brand'>" + key + "</option>";
          }
          localStorage.setItem('shoeBrands', JSON.stringify(brands))
       }
    
-   // }
+   }
+
+   localStorage.setItem('shoesCatalogue', JSON.stringify(shoesList))
 
 }
 
@@ -88,7 +107,7 @@ if(localStorage.getItem('shoeColors')) {
    let colorsOptionElem = document.querySelector('.colorOptions');
    
    for(let key in data) {
-      colorsOptionElem.innerHTML += "<option>" + key + "</option>";
+      colorsOptionElem.innerHTML += "<option class='colorOption' value='color'>" + key.toLowerCase() + "</option>";
    }
 } 
 
@@ -97,7 +116,7 @@ if(localStorage.getItem('shoeSizes')) {
    let sizesOptionElem = document.querySelector('.sizeOptions');
    
    for(let key in data) {
-      sizesOptionElem.innerHTML += "<option>" + key + "</option>";
+      sizesOptionElem.innerHTML += "<option class='sizeOption' value='size'>" + key + "</option>";
    }
 } 
 
@@ -106,7 +125,7 @@ if(localStorage.getItem('shoeBrands')) {
    let brandsOptionElem = document.querySelector('.brandOptions');
    
    for(let key in data) {
-      brandsOptionElem.innerHTML += "<option>" + key + "</option>";
+      brandsOptionElem.innerHTML += "<option class='brandOption' value='brand'>" + key + "</option>";
    }
 } 
 //console.log(shoesList)
@@ -123,23 +142,28 @@ if(localStorage.getItem('shoeBrands')) {
 //     colorsOptionElem.innerHTML = ourGeneratedHTML;
 // }
 
+if(localStorage.getItem('shoesCatalogue')) {
+   let shoesListData = JSON.parse(localStorage.getItem('shoesCatalogue'));
+   for(let i = 0; i < shoesListData.length; i++) {
+      let elem = shoesListData[i];
+      console.log(elem);
+      for(let key in elem) {
+         //alert(key);
+      }
+   }
+   console.log(shoesListData);
+} 
 
-// function searchShoes() {
-//     let colorOptions = document.querySelectorAll('.colorOption');
-//     for(let i = 0; i < colorOptions.length; i++) {
-//         let elem = colorOptions[i];
-//         if(elem.value === "red") {
-//             alert(elem.value);
-//         } else if(elem.value === "blue") {
-//             alert(elem.value);
-//         } else if(elem.value === "orange") {
-//             alert(elem.value);
-//         } else if(elem.value === "black") {
-//             alert(elem.value);
-//         }
-        
-//     }
-// }
+function searchShoes() {
+    let colorOptions = document.querySelectorAll('.colorOption');
+    let sizeOptions = document.querySelectorAll('.sizeOption');
+    let brandOptions = document.querySelectorAll('.brandOption');
+
+    for(let i = 0; i < colorOptions.length; i++) {
+        let elem = colorOptions[i];
+        console.log(elem);
+    }
+}
 
 
 
@@ -172,8 +196,4 @@ cancelCartBtn.addEventListener('click', () => {
 });
 
 
-//searchBtn.addEventListener('click',searchShoes);
-
-
-
-//Setting up and testing handlebars template
+searchBtn.addEventListener('click',searchShoes);

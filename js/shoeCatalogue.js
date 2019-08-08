@@ -9,6 +9,7 @@ function createShoeCatalogue() {
    let colorsAdded = {};
    let sizesAdded = {};
    let brandsAdded = {};
+   let shoesList = [];
 
    function setColor(theColor) {
       color = theColor;
@@ -66,6 +67,10 @@ function createShoeCatalogue() {
 
    function getCatalogueObj() {
       return obj;
+   }
+
+   function getShoesList() {
+      return shoesList;
    }
 
    function incrementQuantity() {
@@ -171,7 +176,8 @@ function createShoeCatalogue() {
       incrementQuantity,
       decrementQuantity,
       checkSize,
-      checkBrand
+      checkBrand,
+      getShoesList
 
    }
 }
