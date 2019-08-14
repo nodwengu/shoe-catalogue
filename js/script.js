@@ -5,6 +5,7 @@ let cancelCartBtn = document.querySelector('#cancelCart');
 let showCartBtn = document.querySelector('.showCart');
 let searchBtn = document.querySelector('#searchBtn');
 let addToCartBtn = document.querySelector('#addToCart');
+let checkoutBtn = document.querySelector('#checkoutBtn');
 
 let colorSelectOptions = document.querySelector('.colorOption');
 let sizeSelectOptions = document.querySelector('.sizeOption');
@@ -141,7 +142,6 @@ if(localStorage.getItem('shoesCatalogue')) {
          //alert(key);
       }
    }
-   console.log(shoesListData);
 } 
 
 let shoesListData = JSON.parse(localStorage.getItem('shoesCatalogue'));
@@ -266,7 +266,12 @@ function addToCart() {
             let isBrandSelected = Object.values(currentShoe).indexOf(selectedBrand) > -1;
 
             if (isColorSelected && isSizeSelected && isBrandSelected) {
-               // alert("Add to cart button clicked");
+               //Decrease stock when added to the cart
+               currentShoe.in_stock--;
+               //console.log(currentShoe);
+               localStorage.setItem('shoesCatalogue', JSON.stringify(shoesListData))
+               //console.log(shoesListData);
+               
                shoeCatalogueInstance.addToCart(currentShoe);
 
                // console.log(shoeCatalogueInstance.getCartItems());
@@ -281,9 +286,14 @@ function addToCart() {
                return
             } 
          }
+
       }
    }
 
+}
+
+function checkoutBtnClicked() {
+   alert("checkout btn clicked");
 }
 
 // let cartData = JSON.parse(localStorage.getItem('cartItems'));
@@ -294,8 +304,7 @@ function addToCart() {
 if(localStorage.getItem('cartItems')) {
     var cartItems = JSON.parse(localStorage.getItem('cartItems'));
     var cartList = { cartItems }
-   console.log("TESTING");
-   console.log(cartList);
+ 
    createHTML(cartList);
 
    document.querySelector('.cartTotal').innerHTML = shoeCatalogueInstance.calculateCartTotal(cartItems);
@@ -348,5 +357,7 @@ cancelCartBtn.addEventListener('click', () => {
 searchBtn.addEventListener('click',searchShoes);
 
 addToCartBtn.addEventListener('click', addToCart);
+
+checkoutBtn.addEventListener('click', checkoutBtnClicked);
             
 
