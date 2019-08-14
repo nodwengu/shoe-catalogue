@@ -13,31 +13,6 @@ describe("shoeCatalogue Function", function() {
         assert.equal(shoeCatalogueInstance.getPrice(), 100.00);
     });
 
-    it('should return the value "2" when the quantity is incremented two times', function(){
-        shoeCatalogueInstance.incrementQuantity();
-        shoeCatalogueInstance.incrementQuantity();
-        
-        assert.equal(shoeCatalogueInstance.getQuantity(), 2);
-    });
-
-    it('should return the value "1" when the quantity is decremented once', function(){ 
-        shoeCatalogueInstance.decrementQuantity();
-        
-        assert.equal(shoeCatalogueInstance.getQuantity(), 1);
-    });
-
-    it('should', function(){
-        shoeCatalogueInstance.setColor('red');
-        shoeCatalogueInstance.setSize(8);
-        shoeCatalogueInstance.setBrand('Puma');
-        shoeCatalogueInstance.setPrice(100);
-        shoeCatalogueInstance.setCatalogueObj();
-        
-        let result = {color:"red", size:8, brand:"Puma", price:"100", in_stock:0};
-
-        assert.deepEqual(shoeCatalogueInstance.getCatalogueObj(), result);
-    });
-    
     it('should return false when the color, size , or brand input value is not in the list', function(){
         shoeCatalogueInstance.setColor('yellow');
         shoeCatalogueInstance.setBrand('Lacoste');
@@ -68,5 +43,27 @@ describe("shoeCatalogue Function", function() {
         assert.equal(shoeCatalogueInstance.checkSize(arr), true);
         assert.equal(shoeCatalogueInstance.checkBrand(arr), true);
     });
+
+    it('should be able to add items to the cart', function(){
+        let data = {color:"red", size:8, brand:"Puma", price:"100", in_stock:0};
+        let result = [{color:"red", size:8, brand:"Puma", price:"100", in_stock:0}]
+
+        shoeCatalogueInstance.addToCart(data)
+
+        assert.deepEqual(shoeCatalogueInstance.getCartItems(), result);
+    });
+
+    it('should be able to calculate and return cart total', function(){
+        let data1 = {color:"red", size:8, brand:"Puma", price:100, in_stock:10};
+        let data2 = {color: 'blue', size: '10', brand: 'Nike', price: 200, in_stock: 20}
+        
+        let result = [{color:"red", size:8, brand:"Puma", price:"100", in_stock:0}]
+
+        shoeCatalogueInstance.addToCart(data1)
+        shoeCatalogueInstance.addToCart(data2)
+
+        assert.deepEqual(shoeCatalogueInstance.getCartItems(), result);
+    });
+    
     
 });

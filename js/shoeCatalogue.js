@@ -10,6 +10,8 @@ function createShoeCatalogue() {
    let sizesAdded = {};
    let brandsAdded = {};
    let shoesList = [];
+   let cartItems = [];
+   let cartTotal = 0;
 
    function setColor(theColor) {
       color = theColor;
@@ -22,10 +24,6 @@ function createShoeCatalogue() {
    }
    function setPrice(thePrice) {
       price = thePrice.toFixed(2);
-   }
-
-   function setQuantity(val) {
-      in_stock = val;
    }
 
    function setCatalogueObj() {
@@ -49,9 +47,10 @@ function createShoeCatalogue() {
    function getPrice() {
       return price;
    }
-   function getQuantity() {
-      return in_stock;
-   }
+
+
+
+
 
    function getColorsAdded() {
       return colorsAdded;
@@ -71,14 +70,6 @@ function createShoeCatalogue() {
 
    function getShoesList() {
       return shoesList;
-   }
-
-   function incrementQuantity() {
-      in_stock++;
-   }
-
-   function decrementQuantity() {
-      in_stock--;
    }
 
    function checkColor(theShoes) {
@@ -152,8 +143,27 @@ function createShoeCatalogue() {
             break;
         } 
       }
-      
       return isRepeated;
+   }
+
+   function addToCart(shoeData) {
+      cartItems.push(shoeData);
+   }
+
+   function getCartItems() {
+      return cartItems;
+   }
+
+   function calculateCartTotal(items) {
+      for(let i = 0; i < items.length; i++) {
+         let currentCartItem = items[i];
+         cartTotal += Number(currentCartItem.price);
+         break;
+      }
+   }
+
+   function getCartTotal() {
+      return cartTotal.toFixed(2);
    }
 
    return {
@@ -161,23 +171,23 @@ function createShoeCatalogue() {
       setSize,
       setBrand,
       setPrice,
-      setQuantity,
       setCatalogueObj,
       getColor,
       getSize,
       getBrand,
       getPrice,
-      getQuantity,
       getCatalogueObj,
       getColorsAdded,
       getSizesAdded,
       getBrandsAdded,
       checkColor,
-      incrementQuantity,
-      decrementQuantity,
       checkSize,
       checkBrand,
-      getShoesList
+      getShoesList,
+      addToCart,
+      getCartItems,
+      calculateCartTotal,
+      getCartTotal
 
    }
 }
@@ -233,3 +243,25 @@ function createShoeCatalogue() {
 //    {color: 'red', size: '45', brand: 'me', price: 170, in_stock: 5}
 // ]
 // alert( shoeCatalogueInstance.checkBrand(arr) );
+
+
+
+   // let obj1 = {color: 'blue', size: '45', brand: 'me', price: 170, in_stock: 5}
+   // let obj2 = {color: 'red', size: '10', brand: 'Puma', price: 200.00, in_stock: 20}
+
+   // shoeCatalogueInstance.addToCart(obj1)
+   // shoeCatalogueInstance.addToCart(obj2)
+
+   // console.log("Testing Testing ");
+   // console.log(shoeCatalogueInstance.getCartItems());
+
+   // let obj1 = {color: 'blue', size: '45', brand: 'me', price: 170, in_stock: 5}
+   // let obj2 = {color: 'red', size: '10', brand: 'Puma', price: 200.00, in_stock: 20}
+
+   // shoeCatalogueInstance.addToCart(obj1)
+   // shoeCatalogueInstance.addToCart(obj2)
+
+   // console.log("Calculating cart total ");
+   // console.log(shoeCatalogueInstance.getCartItems());
+
+   

@@ -12,14 +12,17 @@
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+  
 </head>
 <body>
    <nav class="#ef5350 red lighten-1" role="navigation">
       <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>
          <ul class="right hide-on-med-and-down">
             <li class="addNewBtn"><a href="#"><i class="material-icons left">add_box</i>ADD NEW</a></li>
-            <li class="showCart"><a href="#"><i class="material-icons left">shopping_cart</i>CART</a></li>
-            
+            <li class="showCart">
+               <a href="#"><i class="material-icons left">shopping_cart</i>CART</a>
+            </li>
+            <!-- <li><span class="new badge" data-badge-caption="custom caption">34</span></li> -->
          </ul>
 
          <ul id="nav-mobile" class="sidenav">
@@ -33,46 +36,19 @@
 
    <header>
       <script type="text/x-handlebars-template" class="shoesTemplate">
-         <div class="option-group ">
-            <span class="">Color</span>
-            <select class="browser-default">
-               <option value="" disabled selected>Choose your option</option>
-               {{#each arrTest}}
-                  <option>Red</option>
-               {{/each}}
-               
-               <!-- <option value="blue" class="colorOption">Blue</option>
-               <option value="orange" class="colorOption">Orange</option>
-               <option value="black" class="colorOption">Black</option>
-               <option value="white" class="colorOption">White</option> -->
-            </select>
-         </div>
-         <div class="option-group ">
-            <span>Size&nbsp;&nbsp;&nbsp;</span>
-            <select class="browser-default">
-               <option value="" disabled selected>Choose your option</option>
-               <option value="5">5</option>
-               <option value="6">6</option>
-               <option value="7">7</option>
-               <option value="8">8</option>
-               <option value="9">9</option>
-            </select>
-         </div>
-         <div class="option-group ">
-            <span>Brand</span>
-            <select class="browser-default">
-               <option value="" disabled selected>Choose your option</option>
-               <option value="nike">Nike</option>
-               <option value="adidas">Adidas</option>
-               <option value="reebok">Reebok</option>
-               <option value="fila">Fila</option>
-               <option value="timberland">Timberland</option>
-            </select>
-         </div>
-   
+
+         {{#each cartItems}}
+            <tr>
+               <td>{{color}}</td>
+               <td>{{size}}</td>
+               <td>{{brand}}</td>
+               <td>{{price}}</td>
+            </tr>
+         {{/each}}
+         <h5>Total: R{{calcCartTotal}}</h5>
       </script>
    </header>
-
+   
    <div class="container">
       <div class="section" style="padding-top: 6rem;">
          <h4 class="header">Shoe catalogue</h4>
@@ -153,51 +129,34 @@
    </div>
 
    <div class="container cartItemsWrapper" style="display:none;">
-         <div class="section">
-            <h4 class="header">Cart Items</h4>
-            <div class="">
-               <div class="row card horizontal">
-                     <div class="col s12 m12">
-                           <table>
-                                 <thead>
-                                   <tr>
-                                       <th>Name</th>
-                                       <th>Item Name</th>
-                                       <th>Item Price</th>
-                                       <th>Item Price</th>
-                                   </tr>
-                                 </thead>
-                         
-                                 <tbody>
-                                   <tr>
-                                     <td>Alvin</td>
-                                     <td>Eclair</td>
-                                     <td>$0.87</td>
-                                     <td>$0.87</td>
-                                   </tr>
-                                   <tr>
-                                     <td>Alan</td>
-                                     <td>Jellybean</td>
-                                     <td>$3.76</td>
-                                     <td>$0.87</td>
-                                   </tr>
-                                   <tr>
-                                     <td>Jonathan</td>
-                                     <td>Lollipop</td>
-                                     <td>$7.00</td>
-                                     <td>$0.87</td>
-                                   </tr>
-                                 </tbody>
-                               </table>
-                        <div class="">
-                              <a class="waves-effect #ef5350 red lighten-1 btn" id="cancelCart">CANCEL</a>
-                           <a class="waves-effect #ef5350 red lighten-1 btn"><i class="material-icons left"></i>CHECKOUT</a>
-                        </div>
-                     </div>
+      <div class="section">
+         <h4 class="header">Cart Items</h4>
+         <div class="">
+            <div class="row card horizontal">
+               <div class="col s12 m12">
+                  <table>
+                     <thead>
+                        <tr>
+                           <th>Color</th>
+                           <th>Size</th>
+                           <th>Brand</th>
+                           <th>Price</th>
+                        </tr>
+                     </thead>
+                     <tbody class="cartItems">
+                     
+                     </tbody>
+                  </table>
+                  <!-- <h5>Total: R200.00</h5> -->
+                  <div class="" style="margin: 20px 0 0 0;">
+                        <a class="waves-effect #ef5350 red lighten-1 btn" id="cancelCart">CANCEL</a>
+                     <a class="waves-effect #ef5350 red lighten-1 btn"><i class="material-icons left"></i>CHECKOUT</a>
+                  </div>
                </div>
             </div>
-         </div>  
-      </div>
+         </div>
+      </div>  
+   </div>
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
