@@ -12,7 +12,6 @@
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
-  
 </head>
 <body>
    <nav class="#ef5350 red lighten-1" role="navigation">
@@ -24,19 +23,16 @@
             </li>
             <!-- <li><span class="new badge" data-badge-caption="custom caption">34</span></li> -->
          </ul>
-
          <ul id="nav-mobile" class="sidenav">
             <li class="addNewBtn"><a href="#"><i class="material-icons left">add_box</i>ADD NEW</a></li>
             <li class="showCart"><a href="#"><i class="material-icons left">shopping_cart</i>CART</a></li>
          </ul>
-      
          <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-    </div>
+      </div>
    </nav>
 
    <header>
       <script type="text/x-handlebars-template" class="shoesTemplate">
-
          {{#each cartItems}}
             <tr>
                <td>{{color}}</td>
@@ -44,60 +40,99 @@
                <td>{{brand}}</td>
                <td>{{price}}</td>
             </tr>
-         {{/each}}
-         <h5>Total: R{{calcCartTotal}}</h5>
+         {{/each}} 
       </script>
    </header>
    
-   <div class="container">
-      <div class="section" style="padding-top: 6rem;">
-         <h4 class="header">Shoe catalogue</h4>
-         <div class="">
-            <div class="errorMsg" style="color:red; "></div>
-            <div class="row card horizontal">
-               <div class="col s6 m6" id="displayData">
-                  <img src="data:image/jpeg;base64,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">
-                  <p class="shoeMessage" style="font-size: 1.4em;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
-                  <a class="waves-effect #ef5350 red lighten-1 btn" id="addToCart"><i class="material-icons left">add_shopping_cart</i>ADD TO CART</a>
-               </div>
-               <div class="col s6 m6">
-                  <a class="waves-effect #ef5350 red lighten-1 btn search" id="searchBtn"><i class="material-icons left">search</i>SEARCH</a>
-                  
-                  <div class="option-group ">
-                     <span class="">Color</span>
-                     <select class="browser-default colorOptions">
-                        <option value="" disabled selected>Choose your color</option>
-                        <!-- <option value="red">Red</option> -->
-                     </select>
+   <div class="container" style="width: 90%;">
+      <div class="row" style="padding-top: 6rem;">
+         <div class="col s7 m7">
+            <div class="">
+               <div class="section" style="">
+                  <h4 class="header">Shoe catalogue</h4>
+                  <div class="">
+                     <div class="errorMsg" style="color:red; ">
+                     
+                     </div>
+                     <div class="row card horizontal" style="margin: 0 0 0 0;">
+                        <div class="col s6 m6" id="displayData">
+                           <img src="https://media.takealot.com/covers_tsins/57525686/4059812858596-1A-pdpxl.jpg">
+                           <p class="shoeMessage" style="font-size: 1em;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
+                           <a class="waves-effect #ef5350 red lighten-1 btn" id="addToCart"><i class="material-icons left">add_shopping_cart</i>ADD TO CART</a>
+                        </div>
+                        <div class="col s6 m6">
+                           <a class="waves-effect #ef5350 red lighten-1 btn search" id="searchBtn"><i class="material-icons left">search</i>SEARCH</a>
+                           <div class="option-group ">
+                              <span class="">Color</span>
+                              <select class="browser-default colorOptions">
+                                 <option value="" disabled selected>Choose your color</option>
+                                 <!-- <option value="red">Red</option> -->
+                              </select>
+                           </div>
+                           <div class="option-group ">
+                              <span>Size&nbsp;&nbsp;&nbsp;</span>
+                              <select class="browser-default sizeOptions">
+                                 <option value="" disabled selected>Choose your size</option>
+                                 <!-- <option value="5">5</option> -->
+                              </select>
+                           </div>
+                           <div class="option-group ">
+                              <span>Brand</span>
+                              <select class="browser-default brandOptions">
+                                 <option value="" disabled selected>Choose your brand</option>
+                                 <!-- <option value="nike">Nike</option> -->
+                              </select>
+                           </div>
+                        </div>
+                     </div>
                   </div>
-                    
-                  <div class="option-group ">
-                     <span>Size&nbsp;&nbsp;&nbsp;</span>
-                     <select class="browser-default sizeOptions">
-                        <option value="" disabled selected>Choose your size</option>
-                        <!-- <option value="5">5</option> -->
-                     </select>
-                  </div>
-                  <div class="option-group ">
-                     <span>Brand</span>
-                     <select class="browser-default brandOptions">
-                        <option value="" disabled selected>Choose your brand</option>
-                        <!-- <option value="nike">Nike</option> -->
-                     </select>
-                  </div>
-              
-            </div>
+               </div>  
             </div>
          </div>
-      </div>  
+
+         <div class="col s5 m5">
+            <div class="cartItemsWrapper" >
+               <div class="section">
+                  <h4 class="header">Cart Items</h4>
+                  <div class="">
+                     <div class="row card horizontal" style="margin: 0 0 0 0;">
+                        <div class="col s12 m12">
+                           <table>
+                              <thead>
+                                 <tr>
+                                    <th>Color</th>
+                                    <th>Size</th>
+                                    <th>Brand</th>
+                                    <th>Price</th>
+                                 </tr>
+                              </thead>
+                              <tbody class="cartItems">
+
+                                 <tr class="cart-warning">
+                                    <td class="" colspan="5">No item in your cart..</td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                           <h6 style="font-weight: 900">Total: R<span class="cartTotal">0.00</span></h6>
+                           <div class="" style="margin: 20px 0 0 0;">
+                              <a class="waves-effect #ef5350 red lighten-1 btn" id="cancelCart">CANCEL</a>
+                              <a class="waves-effect #ef5350 red lighten-1 btn"><i class="material-icons left"></i>CHECKOUT</a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>  
+            </div>
+         </div>
+      </div>
    </div>
 
-   <div class="container addNew-wrapper" style="display:none;">
+   <div class="container addNew-wrapper" style="display:none; width: 90%;">
       <div class="section">
          <h4 class="header">Add New Shoe</h4>
          <div class="">
             <div class="row card horizontal">
-               <div class="col s7 m7 offset-s1 offset-m1">
+               <div class="col s7 m7">
                   <div class="input-field">
                      <label for="color">Color</label>
                      <input id="color" type="text" class="validate">
@@ -114,45 +149,12 @@
                      <label for="price">Price</label>
                      <input id="price" type="text" class="validate">  
                   </div>
-                  <!-- <div class="input-field">
-                        <label for="in_stock">In_stock</label>
-                     <input id="in_stock" type="text" class="validate">  
-                  </div> -->
                   <div class="">
                      <a class="waves-effect #ef5350 red lighten-1 btn" id="cancelAddNew">CANCEL</a>
                      <a class="waves-effect #ef5350 red lighten-1 btn" id="addBtn"><i class="material-icons left"></i>ADD</a>
                   </div>
                </div>
-            </div>
-         </div>
-      </div>  
-   </div>
-
-   <div class="container cartItemsWrapper" style="display:none;">
-      <div class="section">
-         <h4 class="header">Cart Items</h4>
-         <div class="">
-            <div class="row card horizontal">
-               <div class="col s12 m12">
-                  <table>
-                     <thead>
-                        <tr>
-                           <th>Color</th>
-                           <th>Size</th>
-                           <th>Brand</th>
-                           <th>Price</th>
-                        </tr>
-                     </thead>
-                     <tbody class="cartItems">
-                     
-                     </tbody>
-                  </table>
-                  <!-- <h5>Total: R200.00</h5> -->
-                  <div class="" style="margin: 20px 0 0 0;">
-                        <a class="waves-effect #ef5350 red lighten-1 btn" id="cancelCart">CANCEL</a>
-                     <a class="waves-effect #ef5350 red lighten-1 btn"><i class="material-icons left"></i>CHECKOUT</a>
-                  </div>
-               </div>
+               <div class="col s5 m5"></div>
             </div>
          </div>
       </div>  

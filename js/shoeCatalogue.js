@@ -11,7 +11,6 @@ function createShoeCatalogue() {
    let brandsAdded = {};
    let shoesList = [];
    let cartItems = [];
-   let cartTotal = 0;
 
    function setColor(theColor) {
       color = theColor;
@@ -155,15 +154,13 @@ function createShoeCatalogue() {
    }
 
    function calculateCartTotal(items) {
+      let total = 0;
       for(let i = 0; i < items.length; i++) {
          let currentCartItem = items[i];
-         cartTotal += Number(currentCartItem.price);
-         break;
+         total += Number(currentCartItem.price);
       }
-   }
 
-   function getCartTotal() {
-      return cartTotal.toFixed(2);
+      return total.toFixed(2);
    }
 
    return {
@@ -186,8 +183,7 @@ function createShoeCatalogue() {
       getShoesList,
       addToCart,
       getCartItems,
-      calculateCartTotal,
-      getCartTotal
+      calculateCartTotal
 
    }
 }

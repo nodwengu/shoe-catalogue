@@ -266,15 +266,16 @@ function addToCart() {
             let isBrandSelected = Object.values(currentShoe).indexOf(selectedBrand) > -1;
 
             if (isColorSelected && isSizeSelected && isBrandSelected) {
-               alert("Add to cart button clicked");
+               // alert("Add to cart button clicked");
                shoeCatalogueInstance.addToCart(currentShoe);
 
-               console.log(shoeCatalogueInstance.getCartItems());
+               // console.log(shoeCatalogueInstance.getCartItems());
                let cartItems = shoeCatalogueInstance.getCartItems();
                let list = {cartItems};
 
                createHTML(list)
 
+               document.querySelector('.cartTotal').innerHTML = shoeCatalogueInstance.calculateCartTotal(cartItems);
                localStorage.setItem( 'cartItems', JSON.stringify(cartItems) )
 
                return
@@ -290,19 +291,23 @@ function addToCart() {
 // console.log("hshhshshhdshhh");
 // console.log(list);
 // createHTML(cartData)
+if(localStorage.getItem('cartItems')) {
+    var cartItems = JSON.parse(localStorage.getItem('cartItems'));
+    var cartList = { cartItems }
+   console.log("TESTING");
+   console.log(cartList);
+   createHTML(cartList);
+
+   document.querySelector('.cartTotal').innerHTML = shoeCatalogueInstance.calculateCartTotal(cartItems);
+ }
 
 Handlebars.registerHelper('calcCartTotal', function() {
-   let cartItems = shoeCatalogueInstance.getCartItems()
-   
-   shoeCatalogueInstance.calculateCartTotal(cartItems)
-   return shoeCatalogueInstance.getCartTotal();
+
+   return shoeCatalogueInstance.calculateCartTotal();
 });
 
 function createHTML(list) {
-   console.log("Testing cart tempalte");
-   console.log(list);
     let rawTemplate = document.querySelector('.shoesTemplate').innerHTML;
-    //console.log(rawTemplate);
     let compiledTemplate = Handlebars.compile(rawTemplate);
     let ourGeneratedHTML = compiledTemplate(list);
 
@@ -335,8 +340,7 @@ showCartBtn.addEventListener('click', () => {
 });
 
 cancelCartBtn.addEventListener('click', () => {
-    //alert("Cancelling cart")
-    document.querySelector('.cartItemsWrapper').style.display = "none"
+    alert("Cancelling cart")
     
 });
 

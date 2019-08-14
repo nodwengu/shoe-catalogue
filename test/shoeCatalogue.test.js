@@ -54,15 +54,16 @@ describe("shoeCatalogue Function", function() {
     });
 
     it('should be able to calculate and return cart total', function(){
-        let data1 = {color:"red", size:8, brand:"Puma", price:100, in_stock:10};
-        let data2 = {color: 'blue', size: '10', brand: 'Nike', price: 200, in_stock: 20}
+        const shoeCatalogueInstance = createShoeCatalogue();
+        let data1 = [
+            {color:"red", size:8, brand:"Puma", price:500, in_stock:10},
+            {color: 'blue', size: '10', brand: 'Nike', price: 200, in_stock: 20},
+            {color: 'blue', size: '5', brand: 'Nike', price: 300, in_stock: 2}
+        ];
+
         
-        let result = [{color:"red", size:8, brand:"Puma", price:"100", in_stock:0}]
 
-        shoeCatalogueInstance.addToCart(data1)
-        shoeCatalogueInstance.addToCart(data2)
-
-        assert.deepEqual(shoeCatalogueInstance.getCartItems(), result);
+        assert.deepEqual(shoeCatalogueInstance.calculateCartTotal(data1), '1000.00');
     });
     
     
