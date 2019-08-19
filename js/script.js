@@ -45,8 +45,6 @@ function storeShoe() {
       //alert("no repeat");
       shoeCatalogueInstance.setShoesList(shoesList);
 
-      // shoesListData.push(shoesList);
-
       shoeCatalogueInstance.checkColor(shoesList);
       shoeCatalogueInstance.checkSize(shoesList);
       shoeCatalogueInstance.checkBrand(shoesList);
@@ -252,8 +250,6 @@ function addToCart() {
       }
    }
 }
-
-
 
 function clearBasket() {
    shoeCatalogueInstance.clearBasket(cartItems);

@@ -69,16 +69,6 @@ function createShoeCatalogue() {
       return selectedBrand;
    }
 
-   // function setShoesList() {
-   //    shoesList.push({
-   //       color,
-   //       size,
-   //       brand,
-   //       price,
-   //       in_stock
-   //    });
-   // }
-
    function setShoesList() {
       shoesList.push({
          color,
@@ -93,10 +83,6 @@ function createShoeCatalogue() {
    function getShoesList() {
       return shoesList;
    }
-
-
-
-
 
    function getColorsAdded() {
       return colorsAdded;
@@ -116,7 +102,6 @@ function createShoeCatalogue() {
          if(currentShoe.color === color && currentShoe.size === size && currentShoe.brand === brand) {
                //update the current element quantity
                currentShoe.in_stock = currentShoe.in_stock + in_stock;
-               //This is where we need to set our image
          }
       }
    }
@@ -156,8 +141,7 @@ function createShoeCatalogue() {
             isRepeated  = true;
             break;
         } 
-      }
-      
+      }   
       return isRepeated;
    }
 
@@ -198,7 +182,6 @@ function createShoeCatalogue() {
             brandsAdded[brand]++;
          }
       }
-
       let newBrand = getBrand();
       for(let key in brandsAdded) {
         if(brandsAdded.hasOwnProperty(newBrand)) {
@@ -208,14 +191,6 @@ function createShoeCatalogue() {
         } 
       }
       return isRepeated;
-   }
-
-   function addToBasket(shoeData) {
-      cartItems.push(shoeData);
-   }
-
-   function getCartItems() {
-      return cartItems;
    }
 
    function calculateCartTotal(items) {
@@ -242,10 +217,10 @@ function createShoeCatalogue() {
             if(currentBasketItem.color == currentShoeItem.color && currentBasketItem.size == currentShoeItem.size && currentBasketItem.brand == currentShoeItem.brand) {
                currentShoeItem.in_stock++;
             }
-   
          }
       }
    }
+
 
    return {
       setColor,
@@ -271,20 +246,14 @@ function createShoeCatalogue() {
       checkSize,
       checkBrand,
      
-      addToBasket,
-      getCartItems,
       calculateCartTotal,
       clearBasket,
       getSelectedColor,
       getSelectedSize,
       getSelectedBrand,
       addStock,
-      decreaseStock,
 
-
-      cancelCart
-
-
+      cancelCart,
    }
 }
 
@@ -357,5 +326,8 @@ function createShoeCatalogue() {
 
    // console.log("Calculating cart total ");
    // console.log(shoeCatalogueInstance.getCartItems());
+
+   // shoeCatalogueInstance.findColor();
+   // alert("wewewe");
 
    
