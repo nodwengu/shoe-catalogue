@@ -6,6 +6,7 @@
   <title>Shoe catalogue</title>
 
   <!-- CSS  -->
+  <link href="css/animate.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -42,6 +43,15 @@
             </tr>
          {{/each}} 
       </script>
+
+      <script type="text/x-handlebars-template" class="myTemplate">
+         <div class="animated fadeIn" id="shoeInfo">
+            <img src="{{imgUrl}}"> 
+            <p>We have <span style="font-weight: 800; margin: 0 0px 0 0;">{{in_stock}} {{color}} {{brand}} </span>  
+            shoes in stock at a price of <span style="font-weight: 800;">R{{price}}</span> each</p>
+         </div>
+         
+      </script>
    </header>
    
    <div class="container" style="width: 90%;">
@@ -51,13 +61,15 @@
                <div class="section" style="">
                   <h4 class="header">Shoe catalogue</h4>
                   <div class="">
-                     <div class="errorMsg" style="color:red; ">
+                     <div class="errorMsg animated fadeInUp" style="display: none; ">
                      
                      </div>
                      <div class="row card horizontal" style="margin: 0 0 0 0;">
-                        <div class="col s6 m6" id="displayData">
-                           <img src="https://media.takealot.com/covers_tsins/57525686/4059812858596-1A-pdpxl.jpg">
-                           <p class="shoeMessage" style="font-size: 1em;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
+                        <div class="col s6 m6">
+                           <div id="displayData">
+                              <img src="images/black-adidas.webp"> 
+                              <p class="shoeMessage" style="font-size: 1em;">Not shoe is selected yet</p>
+                           </div>
                            <a class="waves-effect #ef5350 red lighten-1 btn" id="addToCart"><i class="material-icons left">add_shopping_cart</i>ADD TO CART</a>
                         </div>
                         <div class="col s6 m6">
@@ -109,7 +121,7 @@
                               <tbody class="cartItems">
 
                                  <tr class="cart-warning">
-                                    <td class="" colspan="5">No item in your cart..</td>
+                                    <td class="">No item in your cart..</td>
                                  </tr>
                               </tbody>
                            </table>
@@ -149,10 +161,19 @@
                      <label for="price">Price</label>
                      <input id="price" type="text" class="validate">  
                   </div>
+                  <div class="input-field">
+                     <label for="quantity">Quantity</label>
+                     <input id="quantity" type="text" class="validate">  
+                  </div>
+                  <div class="input-field">
+                     <label for="imageUrl">ImgUrl</label>
+                     <input id="imageUrl" type="text" class="validate">  
+                  </div>
                   <div class="">
                      <a class="waves-effect #ef5350 red lighten-1 btn" id="cancelAddNew">CANCEL</a>
                      <a class="waves-effect #ef5350 red lighten-1 btn" id="addBtn"><i class="material-icons left"></i>ADD</a>
                   </div>
+                  
                </div>
                <div class="col s5 m5"></div>
             </div>

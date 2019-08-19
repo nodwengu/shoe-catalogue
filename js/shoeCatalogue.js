@@ -5,12 +5,16 @@ function createShoeCatalogue() {
    let brand = "";
    let price = 0.00;
    let in_stock = 0;
-   let obj = {};
+
    let colorsAdded = {};
    let sizesAdded = {};
    let brandsAdded = {};
    let shoesList = [];
    let cartItems = [];
+
+   let selectedColor = "";
+   let selectedSize = "";
+   let selectedBrand = "";
 
    function setColor(theColor) {
       color = theColor;
@@ -24,16 +28,15 @@ function createShoeCatalogue() {
    function setPrice(thePrice) {
       price = thePrice.toFixed(2);
    }
-
-   function setCatalogueObj() {
-      obj = {
-         color,
-         size,
-         brand,
-         price,
-         in_stock
-      }
+   function setInStock(quantity) {
+      in_stock = quantity;
    }
+   function setImage(imgVal) {
+      imgUrl = imgVal;
+   }
+   
+
+  
    function getColor() {
       return color;
    }
@@ -45,6 +48,50 @@ function createShoeCatalogue() {
    }
    function getPrice() {
       return price;
+   }
+   function getInStock(quantity) {
+      return in_stock;
+   }
+
+   function getImage() {
+      return imgUrl;
+   }
+
+   function getSelectedColor() {
+      return selectedColor;
+   }
+
+   function getSelectedSize() {
+      return selectedSize;
+   }
+
+   function getSelectedBrand() {
+      return selectedBrand;
+   }
+
+   // function setShoesList() {
+   //    shoesList.push({
+   //       color,
+   //       size,
+   //       brand,
+   //       price,
+   //       in_stock
+   //    });
+   // }
+
+   function setShoesList() {
+      shoesList.push({
+         color,
+         size,
+         brand,
+         price,
+         in_stock,
+         imgUrl
+      });
+   }
+
+   function getShoesList() {
+      return shoesList;
    }
 
 
@@ -62,19 +109,37 @@ function createShoeCatalogue() {
    function getBrandsAdded() {
       return brandsAdded;
    }
-
-   function getCatalogueObj() {
-      return obj;
+  
+   function addStock(listItems) {
+      for(let i = 0; i < listItems.length; i++) {
+         let currentShoe = listItems[i];
+         if(currentShoe.color === color && currentShoe.size === size && currentShoe.brand === brand) {
+               //update the current element quantity
+               currentShoe.in_stock = currentShoe.in_stock + in_stock;
+               //This is where we need to set our image
+         }
+      }
    }
 
-   function getShoesList() {
-      return shoesList;
+   function decreaseStock(list) {
+      alert("decrease function has been called")
+      
+      for(let i = 0; i < list.length; i++) {
+         let currentShoe = list[i];
+         //console.log( currentShoe.color)
+         if(currentShoe.color === color && currentShoe.size === size && currentShoe.brand === brand) {
+         console.log( currentShoe.in_stock)
+               //update the current element quantity
+               currentShoe.in_stock--;
+               //This is where we need to set our image
+         }
+      }
    }
 
-   function checkColor(theShoes) {
+   function checkColor(list) {
       let isRepeated = false;
-      for(let i = 0; i < theShoes.length; i++) {
-         let elem = theShoes[i];
+      for(let i = 0; i < list.length; i++) {
+         let elem = list[i];
          let color = elem.color;
 
          if (colorsAdded[color] === undefined){
@@ -96,10 +161,10 @@ function createShoeCatalogue() {
       return isRepeated;
    }
 
-   function checkSize(theShoes) {
+   function checkSize(list) {
       let isRepeated = false;
-      for(let i = 0; i < theShoes.length; i++) {
-         let elem = theShoes[i];
+      for(let i = 0; i < list.length; i++) {
+         let elem = list[i];
          let size = elem.size;
 
          if (sizesAdded[size] === undefined){
@@ -120,10 +185,10 @@ function createShoeCatalogue() {
       return isRepeated;
    }
 
-   function checkBrand(theShoes) {
+   function checkBrand(list) {
       let isRepeated = false;
-      for(let i = 0; i < theShoes.length; i++) {
-         let elem = theShoes[i];
+      for(let i = 0; i < list.length; i++) {
+         let elem = list[i];
          let brand = elem.brand;
 
          if (brandsAdded[brand] === undefined){
@@ -145,7 +210,7 @@ function createShoeCatalogue() {
       return isRepeated;
    }
 
-   function addToCart(shoeData) {
+   function addToBasket(shoeData) {
       cartItems.push(shoeData);
    }
 
@@ -163,27 +228,62 @@ function createShoeCatalogue() {
       return total.toFixed(2);
    }
 
+   function clearBasket(basketList) {
+      basketList.length = 0;
+   }
+
+   function cancelCart(basketList, shoesList) { 
+      for(let i = 0; i < basketList.length; i++) {
+         let currentBasketItem = basketList[i];
+         
+         for(let j = 0; j < shoesList.length; j++) {
+            let currentShoeItem = shoesList[j];
+           
+            if(currentBasketItem.color == currentShoeItem.color && currentBasketItem.size == currentShoeItem.size && currentBasketItem.brand == currentShoeItem.brand) {
+               currentShoeItem.in_stock++;
+            }
+   
+         }
+      }
+   }
+
    return {
       setColor,
       setSize,
       setBrand,
       setPrice,
-      setCatalogueObj,
+      setInStock,
+      setShoesList,
+      setImage,
+     
       getColor,
       getSize,
       getBrand,
       getPrice,
-      getCatalogueObj,
+      getInStock,
+      getShoesList,
+      getImage,
+
       getColorsAdded,
       getSizesAdded,
       getBrandsAdded,
       checkColor,
       checkSize,
       checkBrand,
-      getShoesList,
-      addToCart,
+     
+      addToBasket,
       getCartItems,
-      calculateCartTotal
+      calculateCartTotal,
+      clearBasket,
+      getSelectedColor,
+      getSelectedSize,
+      getSelectedBrand,
+      addStock,
+      decreaseStock,
+
+
+      cancelCart
+
 
    }
 }
@@ -197,8 +297,6 @@ function createShoeCatalogue() {
 // shoeCatalogueInstance.setCatalogueObj();
 
 // //alert(shoeCatalogueInstance.getColor());
-
-// console.log(shoeCatalogueInstance.getCatalogueObj());
 
 
 
@@ -245,8 +343,8 @@ function createShoeCatalogue() {
    // let obj1 = {color: 'blue', size: '45', brand: 'me', price: 170, in_stock: 5}
    // let obj2 = {color: 'red', size: '10', brand: 'Puma', price: 200.00, in_stock: 20}
 
-   // shoeCatalogueInstance.addToCart(obj1)
-   // shoeCatalogueInstance.addToCart(obj2)
+   // shoeCatalogueInstance.addToBasket(obj1)
+   // shoeCatalogueInstance.addToBasket(obj2)
 
    // console.log("Testing Testing ");
    // console.log(shoeCatalogueInstance.getCartItems());
@@ -254,8 +352,8 @@ function createShoeCatalogue() {
    // let obj1 = {color: 'blue', size: '45', brand: 'me', price: 170, in_stock: 5}
    // let obj2 = {color: 'red', size: '10', brand: 'Puma', price: 200.00, in_stock: 20}
 
-   // shoeCatalogueInstance.addToCart(obj1)
-   // shoeCatalogueInstance.addToCart(obj2)
+   // shoeCatalogueInstance.addToBasket(obj1)
+   // shoeCatalogueInstance.addToBasket(obj2)
 
    // console.log("Calculating cart total ");
    // console.log(shoeCatalogueInstance.getCartItems());
