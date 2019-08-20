@@ -15,14 +15,21 @@ const shoeCatalogueInstance = createShoeCatalogue();
 
 function storeShoe() {
    let shoesList = shoeCatalogueInstance.getShoesList();
+   // console.log(shoesListData);
     
    //Get user input values
-   let colorVal = document.querySelector('#color').value;
+   let colorVal = (document.querySelector('#color').value).toLowerCase();
    let sizeVal = document.querySelector('#size').value;
-   let brandVal = document.querySelector('#brand').value;
+   let brandVal = (document.querySelector('#brand').value).toLowerCase();
    let priceVal = Number(document.querySelector('#price').value);
    let quantityVal = Number(document.querySelector('#quantity').value);
    let imageVal = document.querySelector('#imageUrl').value;
+
+   let validSizeVal = /^\d*$/.test(sizeVal);
+   if(!validSizeVal) {
+      alert("Need numbers only for size");
+      return
+   }
 
    //Set user inputs
    shoeCatalogueInstance.setColor(colorVal);
@@ -33,21 +40,25 @@ function storeShoe() {
    shoeCatalogueInstance.setImage(imageVal);
 
    //Check if color, size, and brand is repeated
-   let isColorRepeated = shoeCatalogueInstance.checkColor(shoesList)
-   let isSizeRepeated = shoeCatalogueInstance.checkSize(shoesList)
-   let isBrandRepeated = shoeCatalogueInstance.checkBrand(shoesList)
+   let isColorRepeated = shoeCatalogueInstance.checkColor(shoesListData)
+   let isSizeRepeated = shoeCatalogueInstance.checkSize(shoesListData)
+   let isBrandRepeated = shoeCatalogueInstance.checkBrand(shoesListData)
 
    //Increase currrent element stock by one if element already exist in my storage
    if(isColorRepeated && isSizeRepeated && isBrandRepeated) {
-      shoeCatalogueInstance.addStock(shoesList);
+      shoeCatalogueInstance.addStock(shoesListData);
    } 
    else {
       //alert("no repeat");
-      shoeCatalogueInstance.setShoesList(shoesList);
+      //shoeCatalogueInstance.setShoesList(shoesListData);
 
-      shoeCatalogueInstance.checkColor(shoesList);
-      shoeCatalogueInstance.checkSize(shoesList);
-      shoeCatalogueInstance.checkBrand(shoesList);
+      shoeCatalogueInstance.setObj();
+      //onsole.log(shoeCatalogueInstance.getObj());
+      shoesListData.push(shoeCatalogueInstance.getObj());
+
+      shoeCatalogueInstance.checkColor(shoesListData);
+      shoeCatalogueInstance.checkSize(shoesListData);
+      shoeCatalogueInstance.checkBrand(shoesListData);
 
       let colors = shoeCatalogueInstance.getColorsAdded()
       let sizes = shoeCatalogueInstance.getSizesAdded()
@@ -75,8 +86,10 @@ function storeShoe() {
          }
          localStorage.setItem('shoeBrands', JSON.stringify(brands))
       }
+
+     
    }
-   localStorage.setItem('shoesCatalogue', JSON.stringify(shoesList))
+   localStorage.setItem('shoesCatalogue', JSON.stringify(shoesListData))
 }
 
 if(localStorage.getItem('shoeColors')) {
@@ -269,7 +282,7 @@ function cancelBasket() {
    localStorage.setItem('shoesCatalogue', JSON.stringify(shoesListData))
 }
 
-if(localStorage.getItem('cartItems')) {
+if(localStorage.getItem('shoesCatalogue')) {
    var shoesListData = JSON.parse(localStorage.getItem('shoesCatalogue'));
  } else {
    shoesListData = [];

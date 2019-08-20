@@ -12,19 +12,20 @@ function createShoeCatalogue() {
    let brandsAdded = {};
    let shoesList = [];
    let cartItems = [];
+   let obj = {};
 
    let selectedColor = "";
    let selectedSize = "";
    let selectedBrand = "";
 
    function setColor(theColor) {
-      color = theColor;
+      color = theColor.charAt(0).toUpperCase() + theColor.slice(1);
    }
    function setSize(theSize) {
       size = theSize;
    }
    function setBrand(theBrand) {
-      brand = theBrand;
+      brand = theBrand.charAt(0).toUpperCase() + theBrand.slice(1);
    }
    function setPrice(thePrice) {
       price = thePrice.toFixed(2);
@@ -34,6 +35,21 @@ function createShoeCatalogue() {
    }
    function setImage(imgVal) {
       imgUrl = imgVal;
+   }
+
+   function setObj() {
+      obj = {
+         color,
+         size,
+         brand,
+         price,
+         in_stock,
+         imgUrl
+      }
+   }
+
+   function getObj() {
+      return obj;
    }
    
    function getColor() {
@@ -214,6 +230,7 @@ function createShoeCatalogue() {
       setInStock,
       setShoesList,
       setImage,
+      setObj,
      
       getColor,
       getSize,
@@ -222,6 +239,7 @@ function createShoeCatalogue() {
       getInStock,
       getShoesList,
       getImage,
+      getObj,
 
       getColorsAdded,
       getSizesAdded,
@@ -242,76 +260,3 @@ function createShoeCatalogue() {
 }
 
 
-//let shoeCatalogueInstance = createShoeCatalogue();
-// shoeCatalogueInstance.setColor('red');
-// shoeCatalogueInstance.setSize(8);
-// shoeCatalogueInstance.setBrand('Thando');
-// shoeCatalogueInstance.setPrice(2.50);
-// shoeCatalogueInstance.setCatalogueObj();
-
-// //alert(shoeCatalogueInstance.getColor());
-
-
-
-//shoeCatalogueInstance.setColor('green');
-// shoeCatalogueInstance.setColor('yellow');
-
-//  let arr = [
-//    {color: 'blue', size: '45', brand: 'me', price: 170, in_stock: 5},
-//    {color: 'yellow', size: '12', brand: 'mike', price: 300, in_stock: 2},
-//    {color: 'red', size: '45', brand: 'me', price: 170, in_stock: 5},
-//    {color: 'pink', size: '45', brand: 'me', price: 170, in_stock: 5}
-// ]
-
-// shoeCatalogueInstance.checkColor(arr);
-// let array = [];
-// let colors = shoeCatalogueInstance.getColorsAdded()
-// array.push(colors)
-// console.log(array)
-
-
-
-//shoeCatalogueInstance.setSize(45);
-//shoeCatalogueInstance.setSize(51);
-
-//  let arr = [
-//    {color: 'blue', size: '45', brand: 'me', price: 170, in_stock: 5},
-//    {color: 'red', size: '45', brand: 'me', price: 170, in_stock: 5}
-// ]
-// alert( shoeCatalogueInstance.checkSize(arr) );
-
-
-
-// shoeCatalogueInstance.setBrand("mine");
-// shoeCatalogueInstance.setBrand("me");
-
-// let arr = [
-//    {color: 'blue', size: '45', brand: 'me', price: 170, in_stock: 5},
-//    {color: 'red', size: '45', brand: 'me', price: 170, in_stock: 5}
-// ]
-// alert( shoeCatalogueInstance.checkBrand(arr) );
-
-
-
-   // let obj1 = {color: 'blue', size: '45', brand: 'me', price: 170, in_stock: 5}
-   // let obj2 = {color: 'red', size: '10', brand: 'Puma', price: 200.00, in_stock: 20}
-
-   // shoeCatalogueInstance.addToBasket(obj1)
-   // shoeCatalogueInstance.addToBasket(obj2)
-
-   // console.log("Testing Testing ");
-   // console.log(shoeCatalogueInstance.getCartItems());
-
-   // let obj1 = {color: 'blue', size: '45', brand: 'me', price: 170, in_stock: 5}
-   // let obj2 = {color: 'red', size: '10', brand: 'Puma', price: 200.00, in_stock: 20}
-
-   // shoeCatalogueInstance.addToBasket(obj1)
-   // shoeCatalogueInstance.addToBasket(obj2)
-
-   // console.log("Calculating cart total ");
-   // console.log(shoeCatalogueInstance.getCartItems());
-
-   // shoeCatalogueInstance.findColor();
-   // alert("wewewe");
-
-   
