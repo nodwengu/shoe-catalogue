@@ -36,10 +36,10 @@ select {
   font-weight: bold;
 }
 
-nav {
+/* nav {
   position: fixed;
   z-index: 999;
-}
+} */
 
 img {
   width: 80%;
@@ -59,7 +59,7 @@ img {
   padding: 10px;
   border-radius: 3px 3px 3px 3px;
   color: #000;
-  background-color: #FEEFB3;
+  /* background-color: #FEEFB3; */
 }
 
 

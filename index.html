@@ -15,48 +15,57 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
 </head>
 <body>
-   <nav class="#ef5350 red lighten-1" role="navigation">
-      <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>
-         <ul class="right hide-on-med-and-down">
-            <li class="addNewBtn"><a href="#"><i class="material-icons left">add_box</i>ADD NEW</a></li>
-            <li class="showCart">
-               <a href="#"><i class="material-icons left">shopping_cart</i>CART</a>
-            </li>
-            <!-- <li><span class="new badge" data-badge-caption="custom caption">34</span></li> -->
-         </ul>
-         <ul id="nav-mobile" class="sidenav">
-            <li class="addNewBtn"><a href="#"><i class="material-icons left">add_box</i>ADD NEW</a></li>
-            <li class="showCart"><a href="#"><i class="material-icons left">shopping_cart</i>CART</a></li>
-         </ul>
-         <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-      </div>
-   </nav>
+   <div class="navbar-fixed">
+      <nav class="#ef5350 red lighten-1" role="navigation">
+         <div class="nav-wrapper container">
+            <a id="logo-container" href="#" class="brand-logo">Logo</a>
+            <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+               <li class="addNewBtn"><a href="#"><i class="material-icons left">add_box</i>ADD NEW</a></li>
+               <li class="showCart">
+                  <a href="#"><i class="material-icons left">shopping_cart</i>CART</a>
+               </li>
+               <!-- <li><span class="new badge" data-badge-caption="custom caption">34</span></li> -->
+            </ul>
+            <ul id="nav-mobile" class="sidenav">
+               <li class="addNewBtn"><a href="#"><i class="material-icons left">add_box</i>ADD NEW</a></li>
+               <li class="showCart"><a href="#"><i class="material-icons left">shopping_cart</i>CART</a></li>
+            </ul>
+            <!-- <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a> -->
+         </div>
+      </nav>
+   </div>
 
    <header>
       <script type="text/x-handlebars-template" class="shoesTemplate">
-         {{#each cartItems}}
-            <tr>
-               <td>{{color}}</td>
-               <td>{{size}}</td>
-               <td>{{brand}}</td>
-               <td>{{price}}</td>
-            </tr>
-         {{/each}} 
+         {{#if cartItems}}
+            {{#each cartItems}}
+               <tr>
+                  <td>{{color}}</td>
+                  <td>{{size}}</td>
+                  <td>{{brand}}</td>
+                  <td>{{price}}</td>
+               </tr>
+            {{/each}} 
+         {{/if}}
+
+         {{#if cartItems}}
+            
+         {{/if}}
       </script>
 
       <script type="text/x-handlebars-template" class="myTemplate">
-         <div class="animated fadeIn" id="shoeInfo">
+         <div class="animated fadeIn">
             <img src="{{imgUrl}}"> 
             <p>We have <span style="font-weight: 800; margin: 0 0px 0 0;">{{in_stock}} {{color}} {{brand}} </span>  
             shoes in stock at a price of <span style="font-weight: 800;">R{{price}}</span> each</p>
          </div>
-         
       </script>
    </header>
    
    <div class="container" style="width: 90%;">
       <div class="row" style="padding-top: 6rem;">
-         <div class="col s7 m7">
+         <div class="col s12 m6">
             <div class="">
                <div class="section" style="">
                   <h4 class="header">Shoe catalogue</h4>
@@ -65,14 +74,14 @@
                      
                      </div>
                      <div class="row card horizontal" style="margin: 0 0 0 0;">
-                        <div class="col s6 m6">
-                           <div id="displayData">
+                        <div class="col s12 m6">
+                           <div id="displayData" class="shoeInfo">
                               <img src="images/black-adidas.webp"> 
                               <p class="shoeMessage" style="font-size: 1em;">Not shoe is selected yet</p>
                            </div>
                            <a class="waves-effect #ef5350 red lighten-1 btn" id="addToCart"><i class="material-icons left">add_shopping_cart</i>ADD TO CART</a>
                         </div>
-                        <div class="col s6 m6">
+                        <div class="col s12 m6">
                            <a class="waves-effect #ef5350 red lighten-1 btn search" id="searchBtn"><i class="material-icons left">search</i>SEARCH</a>
                            <div class="option-group ">
                               <span class="">Color</span>
@@ -102,7 +111,7 @@
             </div>
          </div>
 
-         <div class="col s5 m5">
+         <div class="col s12 m6">
             <div class="cartItemsWrapper" >
                <div class="section">
                   <h4 class="header">Cart Items</h4>
@@ -139,7 +148,7 @@
       </div>
    </div>
 
-   <div class="container addNew-wrapper" style="display:none; width: 90%;">
+   <div class="container addNew-wrapper animated fadeInUp" style="display:none; width: 90%;">
       <div class="section">
          <h4 class="header">Add New Shoe</h4>
          <div class="">

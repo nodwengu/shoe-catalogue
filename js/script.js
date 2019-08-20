@@ -140,8 +140,10 @@ function searchShoes() {
             } else {
                document.querySelector('.errorMsg').style.display = "block";
                document.querySelector('.errorMsg').innerHTML = "Item: OUT OF STOCK";
-               document.querySelector('#shoeInfo').classList.add('animated', 'fadeInUp', 'warning');
-               document.querySelector('#shoeInfo').innerHTML = "No Data Found...";
+               document.querySelector('.shoeInfo').innerHTML = "No Data Found...";
+               document.querySelector('.shoeInfo').classList.add('animated', 'fadeInUp', 'warning');
+              
+               
             }
          }
       }
@@ -154,6 +156,7 @@ function findColor(colors) {
    for(let i = 0; i < colors.length; i++) {
       let currentColor = colors[i];
       if(currentColor.selected) {
+         //console.log(currentColor.value)
          for(let i = 0; i < shoesListData.length; i++) {
             let currentItem = shoesListData[i];
          
@@ -307,7 +310,6 @@ function shoeInfoHTML(list) {
    let displayDataElem = document.querySelector('#displayData');
    displayDataElem.innerHTML = ourGeneratedHTML;
 }
-
 
 addNewBtnElem.addEventListener('click', addNewShoe);
 

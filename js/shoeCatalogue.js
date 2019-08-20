@@ -5,6 +5,7 @@ function createShoeCatalogue() {
    let brand = "";
    let price = 0.00;
    let in_stock = 0;
+   let imgUrl = "";
 
    let colorsAdded = {};
    let sizesAdded = {};
@@ -35,8 +36,6 @@ function createShoeCatalogue() {
       imgUrl = imgVal;
    }
    
-
-  
    function getColor() {
       return color;
    }
@@ -49,7 +48,7 @@ function createShoeCatalogue() {
    function getPrice() {
       return price;
    }
-   function getInStock(quantity) {
+   function getInStock() {
       return in_stock;
    }
 
@@ -102,21 +101,6 @@ function createShoeCatalogue() {
          if(currentShoe.color === color && currentShoe.size === size && currentShoe.brand === brand) {
                //update the current element quantity
                currentShoe.in_stock = currentShoe.in_stock + in_stock;
-         }
-      }
-   }
-
-   function decreaseStock(list) {
-      alert("decrease function has been called")
-      
-      for(let i = 0; i < list.length; i++) {
-         let currentShoe = list[i];
-         //console.log( currentShoe.color)
-         if(currentShoe.color === color && currentShoe.size === size && currentShoe.brand === brand) {
-         console.log( currentShoe.in_stock)
-               //update the current element quantity
-               currentShoe.in_stock--;
-               //This is where we need to set our image
          }
       }
    }

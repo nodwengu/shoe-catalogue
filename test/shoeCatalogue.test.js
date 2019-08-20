@@ -6,11 +6,14 @@ describe("shoeCatalogue Function", function() {
         shoeCatalogueInstance.setSize(8);
         shoeCatalogueInstance.setBrand('Puma');
         shoeCatalogueInstance.setPrice(100);
+        shoeCatalogueInstance.setInStock(10);
+        shoeCatalogueInstance.setImage('images/redNike.jpeg');
         
         assert.equal(shoeCatalogueInstance.getColor(), 'red');
         assert.equal(shoeCatalogueInstance.getSize(), 8);
         assert.equal(shoeCatalogueInstance.getBrand(), 'Puma');
         assert.equal(shoeCatalogueInstance.getPrice(), 100.00);
+        assert.equal(shoeCatalogueInstance.getImage(), 'images/redNike.jpeg');
     });
 
     it('should return false when the color, size , or brand input value is not in the list', function(){
@@ -44,27 +47,18 @@ describe("shoeCatalogue Function", function() {
         assert.equal(shoeCatalogueInstance.checkBrand(arr), true);
     });
 
-    it('should be able to add items to the cart', function(){
-        let data = {color:"red", size:8, brand:"Puma", price:"100", in_stock:0};
-        let result = [{color:"red", size:8, brand:"Puma", price:"100", in_stock:0}]
-
-        shoeCatalogueInstance.addToCart(data)
-
-        assert.deepEqual(shoeCatalogueInstance.getCartItems(), result);
-    });
-
     it('should be able to calculate and return cart total', function(){
         const shoeCatalogueInstance = createShoeCatalogue();
         let data1 = [
-            {color:"red", size:8, brand:"Puma", price:500, in_stock:10},
-            {color: 'blue', size: '10', brand: 'Nike', price: 200, in_stock: 20},
-            {color: 'blue', size: '5', brand: 'Nike', price: 300, in_stock: 2}
+            {color: 'red', size: '8', brand:"Puma", price:500, in_stock:10, imgUrl: 'images/blackAdidas.jpeg'},
+            {color: 'blue', size: '10', brand: 'Nike', price: 200, in_stock: 20, imgUrl: 'images/blackAdidas.jpeg'},
+            {color: 'blue', size: '5', brand: 'Nike', price: 300, in_stock: 2, imgUrl: 'images/blackAdidas.jpeg'},
         ];
-
-        
 
         assert.deepEqual(shoeCatalogueInstance.calculateCartTotal(data1), '1000.00');
     });
+
+    
     
     
 });
