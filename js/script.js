@@ -18,9 +18,9 @@ function storeShoe() {
    // console.log(shoesListData);
     
    //Get user input values
-   let colorVal = document.querySelector('#color').value;
+   let colorVal = (document.querySelector('#color').value).toLowerCase();
    let sizeVal = document.querySelector('#size').value;
-   let brandVal = document.querySelector('#brand').value;
+   let brandVal = (document.querySelector('#brand').value).toLowerCase();
    let priceVal = Number(document.querySelector('#price').value);
    let quantityVal = Number(document.querySelector('#quantity').value);
    let imageVal = document.querySelector('#imageUrl').value;
