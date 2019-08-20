@@ -18,18 +18,12 @@ function storeShoe() {
    // console.log(shoesListData);
     
    //Get user input values
-   let colorVal = (document.querySelector('#color').value).toLowerCase();
-   let sizeVal = Number(document.querySelector('#size').value);
-   let brandVal = (document.querySelector('#brand').value).toLowerCase();
+   let colorVal = document.querySelector('#color').value;
+   let sizeVal = document.querySelector('#size').value;
+   let brandVal = document.querySelector('#brand').value;
    let priceVal = Number(document.querySelector('#price').value);
    let quantityVal = Number(document.querySelector('#quantity').value);
    let imageVal = document.querySelector('#imageUrl').value;
-
-   let validSizeVal = /^\d*$/.test(sizeVal);
-   if(!validSizeVal) {
-      alert("Need numbers only for size");
-      return
-   }
 
    //Set user inputs
    shoeCatalogueInstance.setColor(colorVal);
@@ -47,14 +41,12 @@ function storeShoe() {
    //Increase currrent element stock by one if element already exist in my storage
    if(isColorRepeated && isSizeRepeated && isBrandRepeated) {
       shoeCatalogueInstance.addStock(shoesListData);
-      localStorage.setItem('shoesCatalogue', JSON.stringify(shoesListData))
-      return
    } 
-   else if(!isColorRepeated || isSizeRepeated || isBrandRepeated) {
+   else {
       //alert("no repeat");
-      //shoeCatalogueInstance.setShoesList(shoesListData);
+      shoeCatalogueInstance.setShoesList(shoesListData);
 
-      shoeCatalogueInstance.setObj();
+       shoeCatalogueInstance.setObj();
       //onsole.log(shoeCatalogueInstance.getObj());
       shoesListData.push(shoeCatalogueInstance.getObj());
 
