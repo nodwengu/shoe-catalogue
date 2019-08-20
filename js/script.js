@@ -19,7 +19,7 @@ function storeShoe() {
     
    //Get user input values
    let colorVal = (document.querySelector('#color').value).toLowerCase();
-   let sizeVal = document.querySelector('#size').value;
+   let sizeVal = Number(document.querySelector('#size').value);
    let brandVal = (document.querySelector('#brand').value).toLowerCase();
    let priceVal = Number(document.querySelector('#price').value);
    let quantityVal = Number(document.querySelector('#quantity').value);
@@ -47,8 +47,10 @@ function storeShoe() {
    //Increase currrent element stock by one if element already exist in my storage
    if(isColorRepeated && isSizeRepeated && isBrandRepeated) {
       shoeCatalogueInstance.addStock(shoesListData);
+      localStorage.setItem('shoesCatalogue', JSON.stringify(shoesListData))
+      return
    } 
-   else {
+   else if(!isColorRepeated || isSizeRepeated || isBrandRepeated) {
       //alert("no repeat");
       //shoeCatalogueInstance.setShoesList(shoesListData);
 

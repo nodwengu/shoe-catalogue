@@ -131,7 +131,7 @@ function createShoeCatalogue() {
              //add an entry for the color in the Object Map
              colorsAdded[color] = 0;
          } else {
-            colorsAdded[color]++;
+            colorsAdded[color] = 1;
          }
       }
       let newColor = getColor();
@@ -155,7 +155,7 @@ function createShoeCatalogue() {
              //add an entry for the size in the Object Map
              sizesAdded[size] = 0;
          } else {
-            sizesAdded[size]++;
+            sizesAdded[size] = 1;
          }
       }
       let newsize = getSize();
@@ -179,7 +179,7 @@ function createShoeCatalogue() {
              //add an entry for the brand in the Object Map
              brandsAdded[brand] = 0;
          } else {
-            brandsAdded[brand]++;
+            brandsAdded[brand] = 1;
          }
       }
       let newBrand = getBrand();
