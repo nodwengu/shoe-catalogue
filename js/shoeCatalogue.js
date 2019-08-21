@@ -221,6 +221,20 @@ function createShoeCatalogue() {
       }
    }
 
+   function checkInput(list) {
+      let isInputRepeated = false;
+
+      for(let i = 0; i < list.length; i++) {
+         let currentShoeItem = list[i];
+        
+         if(currentShoeItem.color == color && currentShoeItem.size == size && currentShoeItem.brand == brand) {
+            isInputRepeated = true;
+         } 
+      }
+
+      return isInputRepeated;
+   }
+
 
    return {
       setColor,
@@ -228,7 +242,6 @@ function createShoeCatalogue() {
       setBrand,
       setPrice,
       setInStock,
-      setShoesList,
       setImage,
       setObj,
      
@@ -237,7 +250,6 @@ function createShoeCatalogue() {
       getBrand,
       getPrice,
       getInStock,
-      getShoesList,
       getImage,
       getObj,
 
@@ -256,6 +268,7 @@ function createShoeCatalogue() {
       addStock,
 
       cancelCart,
+      checkInput
    }
 }
 

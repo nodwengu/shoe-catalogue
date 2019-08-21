@@ -14,7 +14,7 @@ const brandSelectOptions = document.querySelector('.brandOption');
 const shoeCatalogueInstance = createShoeCatalogue();
 
 function storeShoe() {
-   let shoesList = shoeCatalogueInstance.getShoesList();
+   let shoesList = JSON.parse(localStorage.getItem('shoesCatalogue'));
    // console.log(shoesListData);
     
    //Get user input values
@@ -34,25 +34,23 @@ function storeShoe() {
    shoeCatalogueInstance.setImage(imageVal);
 
    //Check if color, size, and brand is repeated
-   let isColorRepeated = shoeCatalogueInstance.checkColor(shoesListData)
-   let isSizeRepeated = shoeCatalogueInstance.checkSize(shoesListData)
-   let isBrandRepeated = shoeCatalogueInstance.checkBrand(shoesListData)
+   let isColorRepeated = shoeCatalogueInstance.checkColor(shoesList)
+   let isSizeRepeated = shoeCatalogueInstance.checkSize(shoesList)
+   let isBrandRepeated = shoeCatalogueInstance.checkBrand(shoesList)
 
    //Increase currrent element stock by one if element already exist in my storage
    if(isColorRepeated && isSizeRepeated && isBrandRepeated) {
-      shoeCatalogueInstance.addStock(shoesListData);
+      shoeCatalogueInstance.addStock(shoesList);
    } 
    else {
       //alert("no repeat");
-      shoeCatalogueInstance.setShoesList(shoesListData);
+      shoeCatalogueInstance.setObj();
 
-       shoeCatalogueInstance.setObj();
-      //onsole.log(shoeCatalogueInstance.getObj());
-      shoesListData.push(shoeCatalogueInstance.getObj());
+      shoesList.push(shoeCatalogueInstance.getObj());
 
-      shoeCatalogueInstance.checkColor(shoesListData);
-      shoeCatalogueInstance.checkSize(shoesListData);
-      shoeCatalogueInstance.checkBrand(shoesListData);
+      shoeCatalogueInstance.checkColor(shoesList);
+      shoeCatalogueInstance.checkSize(shoesList);
+      shoeCatalogueInstance.checkBrand(shoesList);
 
       let colors = shoeCatalogueInstance.getColorsAdded()
       let sizes = shoeCatalogueInstance.getSizesAdded()
@@ -80,10 +78,10 @@ function storeShoe() {
          }
          localStorage.setItem('shoeBrands', JSON.stringify(brands))
       }
-
-     
    }
-   localStorage.setItem('shoesCatalogue', JSON.stringify(shoesListData))
+
+   localStorage.setItem('shoesCatalogue', JSON.stringify(shoesList))
+   
 }
 
 if(localStorage.getItem('shoeColors')) {
@@ -148,7 +146,7 @@ function searchShoes() {
                document.querySelector('.errorMsg').style.display = "block";
                document.querySelector('.errorMsg').innerHTML = "Item: OUT OF STOCK";
                document.querySelector('.shoeInfo').innerHTML = "No Data Found...";
-               document.querySelector('.shoeInfo').classList.add('animated', 'fadeInUp', 'warning');
+               document.querySelector('.shoeInfo').classList.add('animated', 'fadeIn', 'warning');
               
                
             }
