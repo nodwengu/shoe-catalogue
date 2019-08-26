@@ -15,7 +15,7 @@ let colorsOptionElem = document.querySelector('.colorOptions');
 let sizesOptionElem = document.querySelector('.sizeOptions');
 let brandsOptionElem = document.querySelector('.brandOptions');
 
-const shoeCatalogueInstance = createShoeCatalogue(data);
+const shoeCatalogueInstance = createShoeCatalogue(data, colors, sizes, brands);
 
 function storeShoe() {
    let shoesList = shoeCatalogueInstance.getShoeList();
@@ -33,8 +33,8 @@ function storeShoe() {
 
    //Check if a color,size,and brand already exists for a particular shoe
    if( !shoeCatalogueInstance.checkInput(shoesList) ) {
-      shoeCatalogueInstance.setShoeList();
 
+      shoeCatalogueInstance.setShoeList();
       //Check if color, size, and brand is repeated
       shoeCatalogueInstance.setColorsAdded(shoesList)
       shoeCatalogueInstance.setSizesAdded(shoesList)
@@ -52,10 +52,13 @@ function storeShoe() {
       for(let key in brands) {
          brandsOptionElem.innerHTML += `<option class='brandOption' value='${key}'> ${key} </option>`;
       } 
+      
+      
    } else {
       shoeCatalogueInstance.updateShoe(shoesList);
-   }
    
+   }
+
    //console.log(shoeCatalogueInstance.getShoeList());
 }
 
@@ -64,17 +67,14 @@ let selectedColor = shoeCatalogueInstance.getSelectedColor();
 let selectedSize = shoeCatalogueInstance.getSelectedSize();
 let selectedBrand = shoeCatalogueInstance.getSelectedBrand();
 
-// //colorsOptionElem.innerHTML = "";
 for(let key in colors) {
    colorsOptionElem.innerHTML += `<option class='colorOption' value='${key}'> ${key} </option>`;
 }
 
-// //sizesOptionElem.innerHTML = "";
 for(let key in sizes) {
    sizesOptionElem.innerHTML += `<option class='sizeOption' value='${key}'> ${key} </option>`;
 }
 
-// //brandsOptionElem.innerHTML = "";
 for(let key in brands) {
    brandsOptionElem.innerHTML += `<option class='brandOption' value='${key}'> ${key} </option>`;
 } 
@@ -215,18 +215,21 @@ function addToCart() {
 
          if(currentItem.color == selectedColorOption && currentItem.size == selectedSizeOption && currentItem.brand == selectedBrandOption) {
             let basketList = shoeCatalogueInstance.getBasketList();
-         
-            currentItem.in_stock--;
-               
-            basketList.push(currentItem);
+            if(currentItem.in_stock >= 1) {
+               currentItem.in_stock--;
+               basketList.push(currentItem);               
+               let list = { basketList };
+               createBasketHTML(list)
+               document.querySelector('.cartTotal').innerHTML = shoeCatalogueInstance.calculateCartTotal(basketList);
+               return;
+            } else {
+               document.querySelector('.errorMsg').style.display = "block";
+               document.querySelector('.errorMsg').innerHTML = "Item: OUT OF STOCK";
+               document.querySelector('.shoeInfo').innerHTML = "No Data Found...";
+               document.querySelector('.shoeInfo').classList.add('animated', 'fadeIn', 'warning');
+               return
+            }
             
-            let list = { basketList };
-
-            createBasketHTML(list)
-
-            document.querySelector('.cartTotal').innerHTML = shoeCatalogueInstance.calculateCartTotal(basketList);
-            //console.log(basketList)
-            break;
          } 
       };
    }  

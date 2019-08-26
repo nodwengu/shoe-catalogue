@@ -1,4 +1,4 @@
-function createShoeCatalogue(data) {  
+function createShoeCatalogue(data, colors, sizes, brands) {  
    let color = "";
    let size = "";
    let brand = "";
@@ -8,9 +8,9 @@ function createShoeCatalogue(data) {
    let shoesList = data || [];
    let basketList = [];
 
-   let colorsAdded = {};
-   let sizesAdded = {};
-   let brandsAdded = {};
+   let colorsAdded = colors || {};
+   let sizesAdded = sizes || {};
+   let brandsAdded = brands || {};
 
    let selectedColor = "";
    let selectedSize = "";
@@ -159,9 +159,17 @@ function createShoeCatalogue(data) {
       });
    }
 
-   function checkInput() {
-      const isInputRepeated = shoesList.filter(item => item.color === color && item.size === size && item.brand === brand);   
-      return (isInputRepeated)
+   function checkInput(list) {
+      let isInputRepeated = false;
+      //console.log(shoesList);
+      shoesList.forEach( (item) => {
+
+         if(item.color === color && item.size === size && item.brand === brand) {
+            isInputRepeated = true;
+         }
+      })
+      // const isInputRepeated = shoesList.filter(item => item.color === color && item.size === size && item.brand === brand);   
+       return isInputRepeated
    }
 
    return {
