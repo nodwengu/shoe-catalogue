@@ -1,50 +1,63 @@
 describe("shoeCatalogue Function", function() {
-    const shoeCatalogueInstance = createShoeCatalogue();
 
-    it('should return the value that was provided as  input', function(){
-        shoeCatalogueInstance.setColor('red');
-        shoeCatalogueInstance.setSize(8);
-        shoeCatalogueInstance.setBrand('Puma');
-        shoeCatalogueInstance.setPrice(100);
-        shoeCatalogueInstance.setInStock(10);
-        shoeCatalogueInstance.setImage('images/redNike.jpeg');
+    it('should return the values that were provided as  input', function(){
+        const shoeCatalogueInstance = createShoeCatalogue();
+
+        shoeCatalogueInstance.setShoe('red', '10', 'nike', 100, 10, 'images/redNike.jpeg');
         
-        assert.equal(shoeCatalogueInstance.getColor(), 'red');
-        assert.equal(shoeCatalogueInstance.getSize(), 8);
-        assert.equal(shoeCatalogueInstance.getBrand(), 'Puma');
+        assert.equal(shoeCatalogueInstance.getColor(), 'Red');
+        assert.equal(shoeCatalogueInstance.getSize(), '10');
+        assert.equal(shoeCatalogueInstance.getBrand(), 'Nike');
         assert.equal(shoeCatalogueInstance.getPrice(), 100.00);
-        assert.equal(shoeCatalogueInstance.getImage(), 'images/redNike.jpeg');
+        assert.equal(shoeCatalogueInstance.getInStock(), 10);
+        assert.equal(shoeCatalogueInstance.getImgUrl(), 'images/redNike.jpeg');
     });
 
-    it('should return false when the color, size , or brand input value is not in the list', function(){
-        shoeCatalogueInstance.setColor('yellow');
-        shoeCatalogueInstance.setBrand('Lacoste');
-        shoeCatalogueInstance.setSize(10);
+    it('Should be able to store and return the shoe data entered by the user in the input field', function(){
+        const shoeCatalogueInstance = createShoeCatalogue();
 
-        let arr = [
-           {color: 'blue', size: '6', brand: 'Adidas', price: 170, in_stock: 5},
-           {color: 'red', size: '7', brand: 'Nike', price: 200, in_stock: 5}
-        ]
-       
-        assert.equal(shoeCatalogueInstance.checkColor(arr), false);
-        assert.equal(shoeCatalogueInstance.checkSize(arr), false);
-        assert.equal(shoeCatalogueInstance.checkBrand(arr), false);
+        shoeCatalogueInstance.setShoe('red', '10', 'nike', 100, 10, 'images/redNike.jpeg');
+        shoeCatalogueInstance.setShoeList()
+        let result = [{"color":"Red","size":"10","brand":"Nike","price":"100.00","in_stock":10,"imgUrl":"images/redNike.jpeg"}]
+
+        assert.deepEqual(shoeCatalogueInstance.getShoeList(), result);
     });
-    
 
-    it('should return true when the color, size , or brand input value is in the list', function(){
-        shoeCatalogueInstance.setColor('red');
-        shoeCatalogueInstance.setBrand('Adidas');
-        shoeCatalogueInstance.setSize(7);
+    it('should set and return colors, sizes , and brands added to the list of shoes items', function(){
+        const shoeCatalogueInstance = createShoeCatalogue();
+
+        shoeCatalogueInstance.setShoe('yellow', '10', 'Lacoste', 100, 10, 'images/redNike.jpeg');
 
         let arr = [
-           {color: 'blue', size: '6', brand: 'Adidas', price: 170, in_stock: 5},
-           {color: 'red', size: '7', brand: 'Nike', price: 200, in_stock: 5}
+           {color: 'blue', size: '6', brand: 'Adidas', price: 170, in_stock: 5, imgUrl: 'images/redNike.jpeg'},
+           {color: 'red', size: '7', brand: 'Nike', price: 200, in_stock: 5, imgUrl: 'images/redNike.jpeg'}
+        ]
+
+        shoeCatalogueInstance.setColorsAdded(arr);
+        shoeCatalogueInstance.setSizesAdded(arr);
+        shoeCatalogueInstance.setBrandsAdded(arr)
+       
+        assert.deepEqual(shoeCatalogueInstance.getColorsAdded(), { blue: 0, red: 0 });
+        assert.deepEqual(shoeCatalogueInstance.getSizesAdded(), { '6': 0, '7': 0 });
+        assert.deepEqual(shoeCatalogueInstance.getBrandsAdded(), { Adidas: 0, Nike: 0 });
+    });
+
+    it('should be able to add and return items added to the basket', function(){
+        const shoeCatalogueInstance = createShoeCatalogue();
+
+        shoeCatalogueInstance.setShoe('yellow', '10', 'Lacoste', 100, 10, 'images/redNike.jpeg');
+
+        let obj1 =  {color: 'red', size: '7', brand: 'Nike', price: 200, in_stock: 5, imgUrl: 'images/redNike.jpeg'};
+        let obj2 =  {color: 'blue', size: '10', brand: 'Adidas', price: 500, in_stock: 20, imgUrl: 'images/blueAdidas.jpeg'};
+       
+        shoeCatalogueInstance.setBasketList(obj1);
+        shoeCatalogueInstance.setBasketList(obj2);
+        let result = [
+            {color: 'red', size: '7', brand: 'Nike', price: 200, in_stock: 5, imgUrl: 'images/redNike.jpeg'},
+            {color: 'blue', size: '10', brand: 'Adidas', price: 500, in_stock: 20, imgUrl: 'images/blueAdidas.jpeg'}
         ]
        
-        assert.equal(shoeCatalogueInstance.checkColor(arr), true);
-        assert.equal(shoeCatalogueInstance.checkSize(arr), true);
-        assert.equal(shoeCatalogueInstance.checkBrand(arr), true);
+        assert.deepEqual(shoeCatalogueInstance.getBasketList(), result);
     });
 
     it('should be able to calculate and return cart total', function(){

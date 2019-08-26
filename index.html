@@ -38,8 +38,8 @@
 
    <header>
       <script type="text/x-handlebars-template" class="shoesTemplate">
-         {{#if cartItems}}
-            {{#each cartItems}}
+         {{#if basketList}}
+            {{#each basketList}}
                <tr>
                   <td>{{color}}</td>
                   <td>{{size}}</td>
@@ -64,7 +64,7 @@
    </header>
    
    <div class="container" style="width: 90%;">
-      <div class="row" style="padding-top: 6rem;">
+      <div class="row" style="padding-top: 0rem;">
          <div class="col s12 m6">
             <div class="">
                <div class="section" style="">
@@ -171,7 +171,7 @@
                      <input id="price" type="text" class="validate">  
                   </div>
                   <div class="input-field">
-                     <label for="quantity">Quantity</label>
+                     <label for="quantity">In_Stock</label>
                      <input id="quantity" type="text" class="validate">  
                   </div>
                   <div class="input-field">
@@ -196,6 +196,7 @@
   <script src="js/init.js"></script>
 
   <script src="js/shoeCatalogue.js"></script>
+  <script type="text/javascript" src="shoes.js"></script>
   <script src="js/script.js"></script>
 
   </body>
