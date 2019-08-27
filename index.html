@@ -8,6 +8,7 @@
   <!-- CSS  -->
   <link href="css/animate.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -22,20 +23,38 @@
             <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
                <li class="addNewBtn"><a href="#"><i class="material-icons left">add_box</i>ADD NEW</a></li>
-               <li class="showCart">
-                  <a href="#"><i class="material-icons left">shopping_cart</i>CART</a>
+               <!-- <li class="showCart">
+                  <a href="#"><i class="material-icons left">shopping_cart</i>CART</a> -->
+               </li>
+               <li class="showCart"><a href="#">
+                  <a class="fa-stack fa-2x has-badge" data-count="0">
+                     <i class="fa fa-circle fa-stack-2x"></i>
+                     <i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
+                  </a>
                </li>
                <!-- <li><span class="new badge" data-badge-caption="custom caption">34</span></li> -->
             </ul>
             <ul id="nav-mobile" class="sidenav">
                <li class="addNewBtn"><a href="#"><i class="material-icons left">add_box</i>ADD NEW</a></li>
                <li class="showCart"><a href="#"><i class="material-icons left">shopping_cart</i>CART</a></li>
+               
             </ul>
             <!-- <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a> -->
          </div>
       </nav>
    </div>
-
+   <!-- <div style="background: silver">
+         <span class="fa-stack fa-2x has-badge" data-count="5">
+               <i class="fa fa-circle fa-stack-2x"></i>
+               <i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
+         </span>
+             
+             <span class="fa-stack fa-2x has-badge" data-count="5">
+               <i class="fa fa-circle fa-stack-2x fa-inverse"></i>
+               <i style="" class="fa fa-shopping-cart fa-stack-2x red-cart"></i>
+             </span>
+   </div> -->
+   
    <header>
       <script type="text/x-handlebars-template" class="shoesTemplate">
          {{#if basketList}}
@@ -60,6 +79,27 @@
             <p>We have <span style="font-weight: 800; margin: 0 0px 0 0;">{{in_stock}} {{color}} {{brand}} </span>  
             shoes in stock at a price of <span style="font-weight: 800;">R{{price}}</span> each</p>
          </div>
+      </script>
+
+      <script type="text/x-handlebars-template" class="colorsTemplate">
+         <option value="" disabled selected>Choose your color</option>
+         {{#each colors}}
+            <option class='colorOption' value='{{@key}}'> {{@key}} </option>
+         {{/each}}
+      </script>
+
+      <script type="text/x-handlebars-template" class="sizesTemplate">
+         <option value="" disabled selected>Choose your size</option>
+         {{#each sizes}}
+            <option class='sizeOption' value='{{@key}}'> {{@key}} </option>
+         {{/each}}
+      </script>
+
+      <script type="text/x-handlebars-template" class="brandsTemplate">
+         <option value="" disabled selected>Choose your brand</option>
+         {{#each brands}}
+            <option class='brandOption' value='{{@key}}'> {{@key}} </option>
+         {{/each}}
       </script>
    </header>
    
@@ -148,11 +188,15 @@
       </div>
    </div>
 
-   <div class="container addNew-wrapper animated fadeInUp" style="display: none; width: 90%;">
+   <div class="container addNew-wrapper animated fadeInUp" style="display: ; width: 90%;">
       <div class="section">
          <h4 class="header">Add New Shoe</h4>
+
          <div class="">
-            <div class="row card horizontal">
+            <div class="successMessage animated fadeInUp" style="display: none;">
+
+            </div>
+            <div class="row card horizontal" id="form-input">
                <div class="col s7 m7">
                   <div class="input-field">
                      <label for="color">Color</label>

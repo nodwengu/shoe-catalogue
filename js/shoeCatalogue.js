@@ -8,6 +8,8 @@ function createShoeCatalogue(data, colors, sizes, brands) {
    let shoesList = data || [];
    let basketList = [];
 
+   let basketCouter = 0;
+
    let colorsAdded = colors || {};
    let sizesAdded = sizes || {};
    let brandsAdded = brands || {};
@@ -62,6 +64,17 @@ function createShoeCatalogue(data, colors, sizes, brands) {
 
    function getImgUrl() {
       return imgUrl;
+   }
+
+   function updateBasketCounter() {
+      basketCouter++;
+   }
+   function resetBasketCounter() {
+      basketCouter = 0;
+   }
+   
+   function getBasketCounter() {
+      return basketCouter;
    }
 
 
@@ -145,6 +158,7 @@ function createShoeCatalogue(data, colors, sizes, brands) {
       return total.toFixed(2);
    }
 
+   
    function clearBasket(basketList) {
       basketList.length = 0;
    }
@@ -171,6 +185,23 @@ function createShoeCatalogue(data, colors, sizes, brands) {
       // const isInputRepeated = shoesList.filter(item => item.color === color && item.size === size && item.brand === brand);   
        return isInputRepeated
    }
+
+
+   
+   
+   //RETURN THE CURRENT ITEM IF IT FOUND IN THE LIST
+   function getCurrentItem(basketList, shoesList) {
+      let currentItem = {}
+      basketList.forEach(cartItem => {
+         currentItem = shoesList.filter(shoeItem => {
+            if(cartItem.color == shoeItem.color && cartItem.size == shoeItem.size && cartItem.brand == shoeItem.brand) {
+               return true
+            }
+         })
+      });
+      return currentItem;
+   }
+   
 
    return {
       setShoe,
@@ -203,6 +234,11 @@ function createShoeCatalogue(data, colors, sizes, brands) {
 
       cancelCart,
       checkInput,
+
+      getCurrentItem,
+      updateBasketCounter,
+      getBasketCounter,
+      resetBasketCounter
       
 
 

@@ -40,44 +40,50 @@ function storeShoe() {
       shoeCatalogueInstance.setSizesAdded(shoesList)
       shoeCatalogueInstance.setBrandsAdded(shoesList)
      
-      //colorsOptionElem.innerHTML = "";
-      for(let key in colors) {
-         colorsOptionElem.innerHTML += `<option class='colorOption' value='${key}'> ${key} </option>`;
+      if(colors) {
+         let newColors = {colors}
+         createColorsHTML(newColors)
       }
-      //sizesOptionElem.innerHTML = "";
-      for(let key in sizes) {
-         sizesOptionElem.innerHTML += `<option class='sizeOption' value='${key}'> ${key} </option>`;
+      if(sizes) {
+         let newSizes = {sizes}
+         createSizesHTML(newSizes)
       }
-      //brandsOptionElem.innerHTML = "";
-      for(let key in brands) {
-         brandsOptionElem.innerHTML += `<option class='brandOption' value='${key}'> ${key} </option>`;
-      } 
-      
+      if(brands) {
+         let newBrands = {brands}
+         createBrandsHTML(newBrands)
+      }
+
+      let input_fields = document.querySelectorAll('#form-input input');
+      input_fields.forEach(input => {
+         input.value = "";
+      })
+      document.querySelector('.successMessage').innerHTML = "Shoe was added successfully.";
+      document.querySelector('.successMessage').style.display = "block";
+      setTimeout(function(){
+         document.querySelector('.successMessage').style.display = "none";
+      }, 3000);
       
    } else {
       shoeCatalogueInstance.updateShoe(shoesList);
-   
    }
-
-   //console.log(shoeCatalogueInstance.getShoeList());
 }
-
-
+ 
 let selectedColor = shoeCatalogueInstance.getSelectedColor();
 let selectedSize = shoeCatalogueInstance.getSelectedSize();
 let selectedBrand = shoeCatalogueInstance.getSelectedBrand();
 
-for(let key in colors) {
-   colorsOptionElem.innerHTML += `<option class='colorOption' value='${key}'> ${key} </option>`;
+if(colors) {
+   let newColors = {colors}
+   createColorsHTML(newColors)
 }
-
-for(let key in sizes) {
-   sizesOptionElem.innerHTML += `<option class='sizeOption' value='${key}'> ${key} </option>`;
+if(sizes) {
+   let newSizes = {sizes}
+   createSizesHTML(newSizes)
 }
-
-for(let key in brands) {
-   brandsOptionElem.innerHTML += `<option class='brandOption' value='${key}'> ${key} </option>`;
-} 
+if(brands) {
+   let newBrands = {brands}
+   createBrandsHTML(newBrands)
+}
 
 function searchShoes() {
    let colorOptions = document.querySelectorAll('.colorOption');
@@ -221,6 +227,10 @@ function addToCart() {
                let list = { basketList };
                createBasketHTML(list)
                document.querySelector('.cartTotal').innerHTML = shoeCatalogueInstance.calculateCartTotal(basketList);
+               createShoeHTML(currentItem)
+               shoeCatalogueInstance.updateBasketCounter();
+               document.querySelector('.fa-stack[data-count]').setAttribute("data-count", shoeCatalogueInstance.getBasketCounter()); 
+            
                return;
             } else {
                document.querySelector('.errorMsg').style.display = "block";
@@ -231,23 +241,36 @@ function addToCart() {
             }
             
          } 
+         
       };
    }  
 }
 
 function cancelBasket() { 
    let basketList = shoeCatalogueInstance.getBasketList()
+   let shoesList = shoeCatalogueInstance.getShoeList();
+   let currentShoe = shoeCatalogueInstance.getCurrentItem(basketList, shoesList);
+   
    shoeCatalogueInstance.cancelCart(basketList, data)
 
    shoeCatalogueInstance.clearBasket(basketList);   
+   shoeCatalogueInstance.resetBasketCounter();
+   document.querySelector('.fa-stack[data-count]').setAttribute("data-count", shoeCatalogueInstance.getBasketCounter());
    
    document.querySelector('.cartItems').innerHTML = "";
    document.querySelector('.cartTotal').innerHTML = "0.00";   
+
+   createShoeHTML(currentShoe[0])
 }
 
 function checkoutBtnClicked() {
+   shoeCatalogueInstance.clearBasket(basketList);
    document.querySelector('.cartItems').innerHTML = "";
    document.querySelector('.cartTotal').innerHTML = "0.00"; 
+
+   shoeCatalogueInstance.resetBasketCounter();
+   document.querySelector('.fa-stack[data-count]').setAttribute("data-count", shoeCatalogueInstance.getBasketCounter());
+
 }
 
 let basketList = shoeCatalogueInstance.getBasketList();
@@ -271,13 +294,35 @@ function createBasketHTML(list) {
    cartItemsElem.innerHTML = ourGeneratedHTML;
 }
 
-function createShoeHTML(list) {
+function createShoeHTML(item) {
    let rawTemplate = document.querySelector('.myTemplate').innerHTML;
    let compiledTemplate = Handlebars.compile(rawTemplate);
-  
-   let ourGeneratedHTML = compiledTemplate(list);
-
+   let ourGeneratedHTML = compiledTemplate(item);
    let displayDataElem = document.querySelector('#displayData');
+   displayDataElem.innerHTML = ourGeneratedHTML;
+}
+
+function createColorsHTML(colorsList) {
+   let rawTemplate = document.querySelector('.colorsTemplate').innerHTML;
+   let compiledTemplate = Handlebars.compile(rawTemplate);
+   let ourGeneratedHTML = compiledTemplate(colorsList);
+   let displayDataElem = document.querySelector('.colorOptions');
+   displayDataElem.innerHTML = ourGeneratedHTML;
+}
+
+function createSizesHTML(sizesList) {
+   let rawTemplate = document.querySelector('.sizesTemplate').innerHTML;
+   let compiledTemplate = Handlebars.compile(rawTemplate);
+   let ourGeneratedHTML = compiledTemplate(sizesList);
+   let displayDataElem = document.querySelector('.sizeOptions');
+   displayDataElem.innerHTML = ourGeneratedHTML;
+}
+
+function createBrandsHTML(brandsList) {
+   let rawTemplate = document.querySelector('.brandsTemplate').innerHTML;
+   let compiledTemplate = Handlebars.compile(rawTemplate);
+   let ourGeneratedHTML = compiledTemplate(brandsList);
+   let displayDataElem = document.querySelector('.brandOptions');
    displayDataElem.innerHTML = ourGeneratedHTML;
 }
 
