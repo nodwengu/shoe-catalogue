@@ -30,6 +30,14 @@ function storeShoe() {
 
    //Set user inputs
    shoeCatalogueInstance.setShoe(colorVal, sizeVal, brandVal, priceVal, inStockVal, imageVal);
+   if(colorVal == "" || sizeVal == "" || brandVal == "" || priceVal == "" || inStockVal == "" || imageVal == ""){
+      document.querySelector('.errorMessage').innerHTML = "Please provide required input data";
+      document.querySelector('.errorMessage').style.display = "block";
+      setTimeout(function(){
+         document.querySelector('.errorMessage').style.display = "none";
+      }, 3000);
+      return
+   }
 
    //Check if a color,size,and brand already exists for a particular shoe
    if( !shoeCatalogueInstance.checkInput(shoesList) ) {

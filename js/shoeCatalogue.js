@@ -177,7 +177,6 @@ function createShoeCatalogue(data, colors, sizes, brands) {
       let isInputRepeated = false;
       //console.log(shoesList);
       shoesList.forEach( (item) => {
-
          if(item.color === color && item.size === size && item.brand === brand) {
             isInputRepeated = true;
          }
@@ -189,7 +188,7 @@ function createShoeCatalogue(data, colors, sizes, brands) {
 
    
    
-   //RETURN THE CURRENT ITEM IF IT FOUND IN THE LIST
+   //RETURN THE CURRENT ITEM IF IT IS FOUND IN THE LIST
    function getCurrentItem(basketList, shoesList) {
       let currentItem = {}
       basketList.forEach(cartItem => {
@@ -239,9 +238,6 @@ function createShoeCatalogue(data, colors, sizes, brands) {
       updateBasketCounter,
       getBasketCounter,
       resetBasketCounter
-      
-
-
    }
 }
 

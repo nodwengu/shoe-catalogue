@@ -70,6 +70,14 @@ img {
   background-color: #5CBB6D;
 }
 
+.errorMessage {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 3px 3px 3px 3px;
+  color: #fff;
+  background-color: #EF534F;
+}
+
 .fa-stack[data-count]:after{
   position:absolute;
   right:0%;
